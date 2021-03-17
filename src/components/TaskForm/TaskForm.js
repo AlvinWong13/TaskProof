@@ -1,28 +1,23 @@
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import useInputState from './useInputState';
+import React, { useState } from 'react'
 
-const TaskForm = ({ saveTask }) => {
-  const { value, reset, onChange } = useInputState();
+function TaskForm() {
+  const [input, setInput] = useState('')
+
+  const handleSubmit = e => {
+    e.preventDefault();
+  }
 
   return (
-    <form
-      onSubmit={event => {
-        event.preventDefault();
-
-        saveTask(value);
-        reset();
-      }}
-    >
-      <TextField
-        variant="outlined"
-        placeholder="Add todo"
-        margin="normal"
-        onChange={onChange}
-        value={value}
+    <form className="task-form" onSubmit={handleSubmit}>
+      <input 
+        type="text" 
+        placeholder="Add a Task" 
+        value={input}
+        name="text" className="task-input"
       />
+      <button className="task-button">Add Task </button>
     </form>
-  );
-};
+  )
+}
 
-export default TaskForm;
+export default TaskForm
