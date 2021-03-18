@@ -18,7 +18,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Home from '../Home/Home';
-import TaskForm from '../TaskForm/TaskForm';
+import TaskList from '../TaskList/TaskList';
 
 import './App.css';
 
@@ -46,7 +46,9 @@ function App() {
             exact
             path="/home"
           >
-            <TaskForm />
+            <div className='task-app'>
+              <TaskList />
+            </div>
           </ProtectedRoute>
 
           <ProtectedRoute
