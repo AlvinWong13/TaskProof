@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 
 import Calendar from "../Calendar/Calendar";
 
-// import "/Home.css";
+// import "./Home.css";
 
 function Home() {
   return(
-    <div className="Home">
+    <div className="App">
     <header>
       <div id="logo">
         <span className="icon">date_range</span>

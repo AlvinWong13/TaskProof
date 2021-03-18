@@ -1,31 +1,54 @@
-import React from 'react';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
+import React, { useState } from 'react';
+import TaskForm from '../TaskForm/TaskForm';
+import Tasks from '../Tasks/Tasks';
 
-const TaskList = ({ tasks, deleteTask }) => (
-  <List>
-    {tasks.map((task, index) => (
-      <ListItem key={index.toString()} dense button>
-        <Checkbox tabIndex={-1} disableRipple />
-        <ListItemText primary={task} />
-        <ListItemSecondaryAction>
-          <IconButton
-            aria-label="Delete"
-            onClick={() => {
-              deleteTodo(index);
-            }}
-          >
-            <DeleteIcon />
-          </IconButton>
-        </ListItemSecondaryAction>
-      </ListItem>
-    ))}
-  </List>
-);
+function TaskList() {
+    const [tasks, setTasks] = useState([])
 
+    const addTask = task => {
+      if(!task.text || /^\s*$/.test(task.text)){
+        return;
+      }
+
+      const newTask = [task, ...tasks]
+
+      setTasks(newTask)
+    };
+
+    const removeTask = id => {
+      const removeArr = [...tasks].filter(task => task.id !== id)
+
+      setTasks(removeArr)
+    };
+
+    const updateTask = (taskId, newValue) => {
+      if(!newValue.text || /^\s*$/.test(newValue.text)){
+        return;
+      }
+
+      setTasks(prev => prev.map(item => (item.id === taskId ? newValue : item)));
+    }
+
+    const completeTask = id => {
+      let updatedTasks = tasks.map(task => {
+        if (task.id === id) {
+          task.isComplete = !task.isComplete
+        }
+        return task;
+      })
+      setTasks(updatedTasks);
+    }
+
+  return (
+    <div className="taskList">
+      <h1>What tasks to do today?</h1>
+      <TaskForm onSubmit={addTask}/>
+      <Tasks 
+        tasks={tasks} 
+        completeTask={completeTask} 
+        removeTask={removeTask}
+        updateTask={updateTask}/>
+    </div>
+  )
+}
 export default TaskList;
