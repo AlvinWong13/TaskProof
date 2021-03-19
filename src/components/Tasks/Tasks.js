@@ -1,16 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import TaskForm from '../TaskForm/TaskForm';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { TiEdit } from 'react-icons/ti';
 
-function Tasks({ tasks, completeTask, removeTask, updateTask }) {
+function Tasks({ taskList, completeTask, removeTask, updateTask }) {
   const [edit, setEdit] = useState({
     id: null,
     value: ''
   })
+  // console.log('taskList', taskList);
+  const dispatch = useDispatch();
 
   const submitUpdate = value => {
     updateTask(edit.id, value)
+    dispatch({
+      type: 'EDIT_TASK',
+      payload: value
+    })
+    console.log('WHAT IS MY VALUE?', value);
+    console.log('WHAT IS MY EDIT ID', edit.id);
+
     setEdit({
       id: null,
       value: ''
@@ -21,17 +31,18 @@ function Tasks({ tasks, completeTask, removeTask, updateTask }) {
     return <TaskForm edit={edit} onSubmit={submitUpdate} />;
   }
 
-  return tasks.map((task, index) => (
-    <div className={task.isComplete ? 'task-row complete' : 'task-row'} key={index}>
+  return taskList.map((task, index) => (
+    <div className={task.completed ? 'task-row complete' : 'task-row'} key={index}>
       <div key={task.id} onClick={() => completeTask(task.id)}>
-        {task.text}
+        {task.task}
       </div>
       <div className="icons">
         <RiCloseCircleLine 
           onClick={() => removeTask(task.id)}
           className='delete-icon'/>
         <TiEdit 
-          onClick={() => setEdit({ id: task.id, value: task.text })}
+          onClick={() => setEdit({ id: task.id, value: task.task })  
+          }
           className='edit-icon'/>
       </div>
 

@@ -1,9 +1,10 @@
 import axios from 'axios';
-import { put, takeEvery } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 
 function* fetchTasks() {
   try {
     const tasks = yield axios.get('/api/tasks');
+    // console.log('what are my tasks?!', tasks.data);
     yield put({
       type: 'SET_TASKS',
       payload: tasks.data
@@ -14,8 +15,59 @@ function* fetchTasks() {
   }
 }
 
+function* addTask(action) {
+  try {
+    yield axios.post('/api/tasks', action.payload);
+    yield put({
+      type: 'FETCH_TASKS'
+    });
+  }
+  catch (error) {
+    console.log('Error adding task', error);
+  }
+}
+
+function* deleteTask(action) {
+  console.log('WHAT IS MY DELETE ACTION', action.payload);
+  try {
+    yield axios.delete(`/api/tasks/${action.payload}`);
+  }
+  catch (error) {
+    console.log('Error Deleting Task');
+  }
+}
+
+function* updateTask(action) {
+  console.log('WHAT IS MY PAYLOAD?', action.payload);
+  try {
+    yield axios.put(`/api/tasks/${action.payload}`)
+    yield put({
+      type: 'FETCH_TASKS'
+    })
+  }
+  catch (error) {
+    console.log('Error editing task', error);
+  }
+}
+
+function* updateCompleted(action) {
+  try {
+    yield axios.put(`/api/tasks/${action.payload}`);
+    yield put({
+      type: 'FETCH_TASKS'
+    })
+  }
+  catch (error) {
+    console.log('Error updating status', error);
+  }
+}
+
 function* taskSaga() {
-  yield takeEvery('FETCH_TASKS', fetchTasks);
+  yield takeLatest('FETCH_TASKS', fetchTasks);
+  yield takeLatest('ADD_TASK', addTask);
+  yield takeLatest('DELETE_TASK', deleteTask);
+  yield takeLatest('EDIT_TASK', updateTask);
+  yield takeLatest('MARK_COMPLETED', updateCompleted);
 }
 
 export default taskSaga;

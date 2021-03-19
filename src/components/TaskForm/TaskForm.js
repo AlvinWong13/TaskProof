@@ -1,12 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 
 function TaskForm(props) {
+  const dispatch = useDispatch();
+
   const [input, setInput] = useState(props.edit ? props.edit.value : '');
 
   const inputRef = useRef(null)
 
   useEffect(() => {
     inputRef.current.focus()
+
   })
 
   const handleChange = e => {
@@ -15,9 +19,13 @@ function TaskForm(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
+    dispatch({
+      type: 'ADD_TASK',
+      payload: {task: input}
+    })
 
     props.onSubmit({
-      id: Math.floor(Math.random() * 10000),
+      // id: Math.floor(Math.random() * 10000),
       text: input
     });
     setInput('');
@@ -57,4 +65,4 @@ function TaskForm(props) {
   )
 }
 
-export default TaskForm
+export default TaskForm;
