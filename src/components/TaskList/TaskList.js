@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import TaskForm from '../TaskForm/TaskForm';
 import Tasks from '../Tasks/Tasks';
 
 function TaskList() {
+    const dispatch = useDispatch();
+    const taskList = useSelector(store => store.taskList)
     const [tasks, setTasks] = useState([])
+
+    useEffect(() => {
+      dispatch({
+        type: 'FETCH_TASKS'
+      });
+    }, [])
 
     const addTask = task => {
       if(!task.text || /^\s*$/.test(task.text)){
@@ -17,8 +26,16 @@ function TaskList() {
 
     const removeTask = id => {
       const removeArr = [...tasks].filter(task => task.id !== id)
+      dispatch({
+        type: 'DELETE_TASK',
+        payload: id
+      });
 
       setTasks(removeArr)
+
+      dispatch({
+        type: 'FETCH_TASKS'
+      });
     };
 
     const updateTask = (taskId, newValue) => {
@@ -30,20 +47,29 @@ function TaskList() {
     }
 
     const completeTask = id => {
-      let updatedTasks = tasks.map(task => {
+      let updatedTasks = taskList.map(task => {
         if (task.id === id) {
-          task.isComplete = !task.isComplete
+          task.completed = !task.completed
         }
         return task;
+      })
+      dispatch({
+        type: 'MARK_COMPLETED',
+        payload: id
       })
       setTasks(updatedTasks);
     }
 
+    // console.log('taskList HERE!', taskList);
+
   return (
     <div className="taskList">
       <h1>What tasks to do today?</h1>
-      <TaskForm onSubmit={addTask}/>
+      <TaskForm 
+      onSubmit={addTask}
+      updateTask={updateTask}/>
       <Tasks 
+        taskList={taskList}
         tasks={tasks} 
         completeTask={completeTask} 
         removeTask={removeTask}
