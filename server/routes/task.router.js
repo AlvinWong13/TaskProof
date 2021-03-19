@@ -37,9 +37,10 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  const task = req.body.task;
-  const taskId = req.body.id;
-  console.log('REQ.BODY', req.body);
+  const task = req.body.value.text;
+  const taskId = req.body.editId;
+  console.log('REQ.BODY.TASK', req.body.value.text);
+  console.log('req.body.id', req.body.editId)
 
   const taskQuery = `UPDATE "tasks" SET "task" = $1 WHERE "id" = $2;`;
   pool
@@ -69,7 +70,7 @@ router.delete(`/:id`, (req, res) => {
     })
 });
 
-router.put('/:id', (req, res) => {
+router.put('/completed/:id', (req, res) => {
   const completedId = [req.params.id];
 
   const taskQuery = `UPDATE "tasks" SET "completed" = NOT "completed" WHERE id = $1`;

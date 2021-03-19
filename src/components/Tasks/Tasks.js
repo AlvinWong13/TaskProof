@@ -16,10 +16,13 @@ function Tasks({ taskList, completeTask, removeTask, updateTask }) {
     updateTask(edit.id, value)
     dispatch({
       type: 'EDIT_TASK',
-      payload: value
+      payload: {
+        editId: edit.id,
+        value: value
+      }
     })
-    console.log('WHAT IS MY VALUE?', value);
     console.log('WHAT IS MY EDIT ID', edit.id);
+    console.log('WHAT IS MY VALUE?', value);
 
     setEdit({
       id: null,
@@ -41,7 +44,7 @@ function Tasks({ taskList, completeTask, removeTask, updateTask }) {
           onClick={() => removeTask(task.id)}
           className='delete-icon'/>
         <TiEdit 
-          onClick={() => setEdit({ id: task.id, value: task.task })  
+          onClick={() => setEdit({value: task.task, id: task.id })  
           }
           className='edit-icon'/>
       </div>

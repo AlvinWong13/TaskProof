@@ -38,12 +38,9 @@ function* deleteTask(action) {
 }
 
 function* updateTask(action) {
-  console.log('WHAT IS MY PAYLOAD?', action.payload);
+  console.log('WHAT IS MY PAYLOAD WHEN EDITING?', action.payload);
   try {
-    yield axios.put(`/api/tasks/${action.payload}`)
-    yield put({
-      type: 'FETCH_TASKS'
-    })
+    yield axios.put(`/api/tasks/${action.payload}`, action.payload)
   }
   catch (error) {
     console.log('Error editing task', error);
@@ -52,7 +49,7 @@ function* updateTask(action) {
 
 function* updateCompleted(action) {
   try {
-    yield axios.put(`/api/tasks/${action.payload}`);
+    yield axios.put(`/api/tasks/completed/${action.payload}`);
     yield put({
       type: 'FETCH_TASKS'
     })

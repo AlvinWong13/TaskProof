@@ -54,17 +54,20 @@ function TaskList() {
         return task;
       })
       dispatch({
-        type: 'MARK_COMPLETED'
+        type: 'MARK_COMPLETED',
+        payload: id
       })
       setTasks(updatedTasks);
     }
 
-    // console.log('tasklist HERE!', taskList);
+    // console.log('taskList HERE!', taskList);
 
   return (
     <div className="taskList">
       <h1>What tasks to do today?</h1>
-      <TaskForm onSubmit={addTask}/>
+      <TaskForm 
+      onSubmit={addTask}
+      updateTask={updateTask}/>
       <Tasks 
         taskList={taskList}
         tasks={tasks} 
