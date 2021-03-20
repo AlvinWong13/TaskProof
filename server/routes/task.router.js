@@ -63,7 +63,7 @@ router.put('/:id', (req, res) => {
     })
 });
 
-router.delete(`/:id`, (req, res) => {
+router.delete(`/:id`, rejectUnauthenticated, (req, res) => {
   let taskQuery;
   let taskParams;
   if (req.user.authlevel === 'ADMIN') {
@@ -90,15 +90,26 @@ router.delete(`/:id`, (req, res) => {
     })
 });
 
-router.put('/completed/:id', (req, res) => {
-  const completedId = [req.params.id];
-
-  const taskQuery = `UPDATE "tasks" SET "completed" = NOT "completed" WHERE id = $1`;
+router.put('/completed/:id', rejectUnauthenticated, (req, res) => {
+  let taskQuery; 
+  let completedParams;
+  if (req.user.authlevel === 'ADMIN') {
+    taskQuery = `UPDATE "tasks" SET "completed" = NOT "completed" WHERE id = $1`;
+    completedParams = [req.params.id]
+  }
+  else{
+    taskQuery = `UPDATE "tasks" SET "completed" = NOT "completed" WHERE id = $1 AND user_id = $2`;
+    completedParams = [req.params.id, req.user.id];
+  }
   pool
-    .query (taskQuery, completedId)
+    .query (taskQuery, completedParams)
     .then(response => {
-      console.log(response);
-      res.sendStatus(200);
+      if(response) {
+        res.sendStatus(403);
+      }
+      else{
+        res.sendStatus(200);
+      } 
     })
     .catch(error => {
       console.log('Unable to update completed status', error);
