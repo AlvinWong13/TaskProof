@@ -20,14 +20,17 @@ function Tasks({ taskList, completeTask, removeTask, updateTask }) {
         editId: edit.id,
         value: value
       }
-    })
+    });
     console.log('WHAT IS MY EDIT ID', edit.id);
     console.log('WHAT IS MY VALUE?', value);
 
     setEdit({
       id: null,
       value: ''
-    })
+    });
+    dispatch({
+      type: 'FETCH_TASKS',
+    });
   }
 
   if (edit.id) {

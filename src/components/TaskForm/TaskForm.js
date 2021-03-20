@@ -19,10 +19,12 @@ function TaskForm(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch({
-      type: 'ADD_TASK',
-      payload: {task: input}
-    })
+    if(!props.edit.id) {
+      dispatch({
+        type: 'ADD_TASK',
+        payload: {task: input}
+      })
+    }
 
     props.onSubmit({
       text: input
