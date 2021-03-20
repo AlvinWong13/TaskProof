@@ -34,7 +34,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   console.log(req.user.id);
 
   const taskQuery = `INSERT INTO "tasks" ("task", "user_id")
-    VALUES ($1, $2) ;`;
+    VALUES ($1, $2);`;
   pool
     .query(taskQuery, [req.body.task, req.user.id])
     .then(() => res.sendStatus(200))
@@ -44,15 +44,24 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
-  const task = req.body.value.text;
-  const taskId = req.body.editId;
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  let taskQuery;
+  let editParams; //req.body.value.text;
+  // let taskId; //req.body.editId;
   console.log('REQ.BODY.TASK', req.body.value.text);
-  console.log('req.body.id', req.body.editId)
+  console.log('req.body.id', req.body.editId);
 
-  const taskQuery = `UPDATE "tasks" SET "task" = $1 WHERE "id" = $2;`;
+  if (req.user.authlevel === 'ADMIN') {
+    taskQuery = `UPDATE "tasks" SET "task" = $1 WHERE "id" = $2;`;
+    editParams = [req.body.value.text, req.body.editId];
+    // taskId = req.body.editId;
+  }
+  else{
+    taskQuery = `UPDATE "tasks" SET "task" = $1 WHERE "id" = $2 AND user_id = $3;`;
+    editParams = [req.body.value.text, req.body.editId, req.user.id]
+  }
   pool
-    .query(taskQuery, [task, taskId])
+    .query(taskQuery, editParams)
     .then(result => {
       console.log('Task updated');
       res.sendStatus(200);
@@ -104,12 +113,8 @@ router.put('/completed/:id', rejectUnauthenticated, (req, res) => {
   pool
     .query (taskQuery, completedParams)
     .then(response => {
-      if(response) {
-        res.sendStatus(403);
-      }
-      else{
-        res.sendStatus(200);
-      } 
+      console.log(response);
+      res.sendStatus(200);
     })
     .catch(error => {
       console.log('Unable to update completed status', error);
