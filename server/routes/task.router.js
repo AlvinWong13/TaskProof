@@ -64,14 +64,26 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete(`/:id`, (req, res) => {
-  const taskId = [req.params.id];
-
-  const taskQuery = `DELETE FROM "tasks" WHERE id = $1;`;
+  let taskQuery;
+  let taskParams;
+  if (req.user.authlevel === 'ADMIN') {
+    taskQuery = `DELETE FROM "tasks" WHERE id = $1 RETURNING *;`;
+    taskParams = [req.params.id]
+  }
+  else{
+    taskQuery = `DELETE FROM "tasks" WHERE id = $1 AND user_id = $2 RETURNING *;`;
+    taskParams = [req.params.id, req.user.id];
+  }
+  
   pool
-    .query(taskQuery, taskId)
+    .query(taskQuery, taskParams)
     .then(response => {
-      console.log(response);
-      res.sendStatus(200);
+      if(response.rows.length === 0) {
+        res.sendStatus(403);
+      }
+      else{
+        res.sendStatus(200);
+      } 
     })
     .catch(error => {
       console.log('Unable to delete', error);
