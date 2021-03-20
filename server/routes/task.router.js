@@ -1,14 +1,22 @@
 const express = require('express');
 const pool = require('../modules/pool');
+const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 const router = express.Router();
 
 /**
  * GET route
  */
 router.get('/', (req, res) => {
-  const taskQuery = `SELECT * FROM "tasks";`;
+  if(!req.isAuthenticated()) {
+    res.sendStatus(403)
+    return;
+  }
+
+  const taskQuery = `SELECT * FROM "tasks" WHERE user_id = $1;`;
+  let userId = req.user.id
+
   pool
-    .query(taskQuery)
+    .query(taskQuery, [userId])
     .then((result) => {
       res.send(result.rows);
     })
@@ -21,14 +29,14 @@ router.get('/', (req, res) => {
 /**
  * POST route 
  */
-router.post('/', (req, res) => {
-  const taskInput = req.body.task;
-  console.log(req.body.task)
+router.post('/', rejectUnauthenticated, (req, res) => {
+  console.log(req.body.task);
+  console.log(req.user.id);
 
-  const taskQuery = `INSERT INTO "tasks" (task)
-    VALUES ($1) RETURNING id;`;
+  const taskQuery = `INSERT INTO "tasks" ("task", "user_id")
+    VALUES ($1, $2) ;`;
   pool
-    .query(taskQuery, [taskInput])
+    .query(taskQuery, [req.body.task, req.user.id])
     .then(() => res.sendStatus(200))
     .catch(error => {
       console.log('Adding task failed', error)
