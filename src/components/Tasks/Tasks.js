@@ -21,13 +21,14 @@ function Tasks({ taskList, completeTask, removeTask, updateTask }) {
         value: value
       }
     });
-    console.log('WHAT IS MY EDIT ID', edit.id);
-    console.log('WHAT IS MY VALUE?', value);
+    // console.log('WHAT IS MY EDIT ID', edit.id);
+    // console.log('WHAT IS MY VALUE?', value);
 
     setEdit({
       id: null,
       value: ''
     });
+
     dispatch({
       type: 'FETCH_TASKS',
     });
@@ -44,7 +45,7 @@ function Tasks({ taskList, completeTask, removeTask, updateTask }) {
       </div>
       <div className="icons">
         <RiCloseCircleLine 
-          onClick={() => removeTask(task.id)}
+          onClick={() =>  removeTask(task.id)}
           className='delete-icon'/>
         <TiEdit 
           onClick={() => setEdit({value: task.task, id: task.id })  

@@ -17,8 +17,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import Home from '../Home/Home';
 import TaskList from '../TaskList/TaskList';
+import TeamSelect from '../TeamSelect/TeamSelect';
 
 import './App.css';
 
@@ -34,29 +34,23 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-          <Redirect exact from="/"  />
 
-          {/* For protected routes, the view could show one of several things on the same route.
-            Visiting localhost:3000/user will show the UserPage if the user is logged in.
-            If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
-            Even though it seems like they are different pages, the user is always on localhost:3000/user */}
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
-            path="/home"
+            path="/team"
           >
-            <div className='task-app'>
-              <TaskList />
-            </div>
+              <TeamSelect />
           </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/info"
+            path="/task"
           >
-            <InfoPage />
+            <div className='task-app'>
+              <TaskList />
+            </div>
           </ProtectedRoute>
 
           {/* When a value is supplied for the authRedirect prop the user will
@@ -68,7 +62,7 @@ function App() {
             // - else shows LoginPage at /login
             exact
             path="/login"
-            authRedirect="/home"
+            authRedirect="/team"
           >
             <LoginPage />
           </ProtectedRoute>
@@ -79,7 +73,7 @@ function App() {
             // - else shows RegisterPage at "/registration"
             exact
             path="/registration"
-            authRedirect="/home"
+            authRedirect="/team"
           >
             <RegisterPage />
           </ProtectedRoute>
@@ -89,8 +83,8 @@ function App() {
             // - if logged in, redirects to "/user"
             // - else shows LandingPage at "/home"
             exact
-            path="/home"
-            authRedirect="/home"
+            path="/team"
+            authRedirect="/team"
           >
             <LandingPage />
           </ProtectedRoute>

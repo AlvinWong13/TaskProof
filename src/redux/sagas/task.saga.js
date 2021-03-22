@@ -28,7 +28,7 @@ function* addTask(action) {
 }
 
 function* deleteTask(action) {
-  console.log('WHAT IS MY DELETE ACTION', action.payload);
+  // console.log('WHAT IS MY DELETE ACTION', action.payload);
   try {
     yield axios.delete(`/api/tasks/${action.payload}`);
   }
@@ -38,7 +38,7 @@ function* deleteTask(action) {
 }
 
 function* updateTask(action) {
-  console.log('WHAT IS MY PAYLOAD WHEN EDITING?', action.payload);
+  // console.log('WHAT IS MY PAYLOAD WHEN EDITING?', action.payload);
   try {
     yield axios.put(`/api/tasks/${action.payload}`, action.payload)
   }
