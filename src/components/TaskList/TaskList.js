@@ -2,6 +2,59 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TaskForm from '../TaskForm/TaskForm';
 import Tasks from '../Tasks/Tasks';
+import { MdClose } from 'react-icons/md';
+import styled from 'styled-components';
+
+const Background = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalWrapper = styled.div`
+    width: 450px;
+    height: 500px;
+    box-shadow: 0 5px 16px rgba(0, 0, 0 ,0.2);
+    background: #aaa9a9;
+    color: #000;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    z-index: 10;
+    border-radius: 10px;
+`;
+
+const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.8;
+  color: #141414;
+  p {
+    margin-bottom: 1rem;
+  }
+  button {
+    padding: 10px 24px;
+    background: #141414;
+    color: #fff;
+    border: none;
+  }
+`;
+
+const CloseModalButton = styled(MdClose)`
+  cursor: pointer;
+  position: absolute;
+  top: 20px
+  right: 20px;
+  width: 32px;
+  width: 32px
+  height: 32px;
+  padding: 0;
+  z-index: 10;
+`;
 
 function TaskList({showTaskList, setShowTaskList}) {
     const dispatch = useDispatch();
@@ -65,7 +118,10 @@ function TaskList({showTaskList, setShowTaskList}) {
   return (
     <>
     {showTaskList ? 
-    <div className="taskList">
+    <Background>
+      <ModalWrapper showTaskList={showTaskList}>
+        <ModalContent>
+      <div className="taskList">
       <h1>What tasks to do today?</h1>
       <TaskForm 
         onSubmit={addTask}
@@ -79,8 +135,15 @@ function TaskList({showTaskList, setShowTaskList}) {
         updateTask={updateTask}
       />
     </div>
+        </ModalContent>
+        <CloseModalButton
+          aria-label='Close modal'
+          onClick={() => setShowTaskList(prev => !prev)}
+        />
+      </ModalWrapper>
+    </Background>
     : null}
     </>
-  )
-}
+  );
+};
 export default TaskList;
