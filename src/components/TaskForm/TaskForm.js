@@ -21,9 +21,9 @@ function TaskForm(props) {
 
   const classes = useStyles();
 
-  const [input, setInput] = useState(props.edit ? props.edit.value : '');
-
   const [date, setDate] = useState('')
+
+  const [input, setInput] = useState(props.edit ? props.edit.value : '');
 
   const user = useSelector(store => store.user)
 
@@ -42,11 +42,6 @@ function TaskForm(props) {
 
   const handleDateChange = e => {
     setDate(e.target.value);
-  }
-
-  const testButton = e => {
-    e.preventDefault();
-    console.log('WHAT IS MY DATE?', date)
   }
 
   const handleSubmit = e => {
@@ -94,21 +89,21 @@ function TaskForm(props) {
           ref={inputRef}
         />
         <button  className="task-button"> Add Task </button>
+        <Grid container justify="space-around">
+          <TextField
+            id="date"
+            label="Task Date"
+            type="date"
+            defaultValue="2021-03-22"
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={handleDateChange}
+          />
+        </Grid>
       </>
       )}
-      <Grid container justify="space-around">
-      <TextField
-      id="date"
-      label="Task Date"
-      type="date"
-      defaultValue="2021-03-22"
-      className={classes.textField}
-      InputLabelProps={{
-        shrink: true,
-      }}
-      onChange={handleDateChange}
-      />
-      </Grid>
     </form>
   )
 }

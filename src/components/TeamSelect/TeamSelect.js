@@ -28,7 +28,7 @@ function TeamSelect() {
       type: 'SELECT_TEAM',
       payload: teamId
     })
-    history.push('/task')
+    history.push('/calendar')
   };
 
   // console.log('what teams am i getting?', teamSelect);

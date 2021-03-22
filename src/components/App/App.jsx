@@ -19,6 +19,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import TaskList from '../TaskList/TaskList';
 import TeamSelect from '../TeamSelect/TeamSelect';
+import Calendar from '../Calendar/Calendar';
 
 import './App.css';
 
@@ -44,7 +45,23 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows Calendar else shows LoginPage
+            exact
+            path="/calendar"
+          >
+            {/* <div className='task-app'>
+              <TaskList />
+            </div> */}
+            <Calendar 
+              generalStyle={{
+                maxWidth: "100%",
+                margin: "0 auto",
+                height: "100%",
+                overflow: "auto"
+              }}/>
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows Calendar else shows LoginPage
             exact
             path="/task"
           >

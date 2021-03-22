@@ -3,8 +3,9 @@ import { useDispatch } from 'react-redux';
 import TaskForm from '../TaskForm/TaskForm';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { TiEdit } from 'react-icons/ti';
+import moment from 'moment';
 
-function Tasks({ taskList, completeTask, removeTask, updateTask }) {
+function Tasks({ date, setDate, taskList, completeTask, removeTask, updateTask }) {
   const [edit, setEdit] = useState({
     id: null,
     value: ''
@@ -18,7 +19,8 @@ function Tasks({ taskList, completeTask, removeTask, updateTask }) {
       type: 'EDIT_TASK',
       payload: {
         editId: edit.id,
-        value: value
+        value: value,
+        date: moment(date).format('MM-DD-YYYY'),
       }
     });
     // console.log('WHAT IS MY EDIT ID', edit.id);
