@@ -43,8 +43,10 @@ function TaskList({ date, team }) {
 
       dispatch({
         type: 'FETCH_TASKS',
-        payload: moment(date).format('YYYY-MM-DD'),
-        team: team
+        payload: {
+          date: moment(date).format('YYYY-MM-DD'),
+          team: team
+        }
       });
     };
 

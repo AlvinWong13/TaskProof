@@ -12,9 +12,9 @@ router.get('/:date/:team', (req, res) => {
     return;
   }
   const date = req.params.date;
-  console.log('date?', date);
+  // console.log('date?', date);
   const team = req.params.team;
-  console.log('team params', req.params.team);
+  // console.log('team params', req.params.team);
 
   const taskQuery = `SELECT * FROM "tasks" 
       WHERE user_id = $1 AND date = $2 AND team_id = $3
@@ -40,7 +40,7 @@ router.get('/:date/:team', (req, res) => {
 router.post('/', rejectUnauthenticated, (req, res) => {
   // console.log(req.body.task);
   // console.log(req.user.id);
-  console.log(req.body.team)
+  console.log('what is my req.body?',req.body)
   // console.log(req.body.team.id);
 
   const taskQuery = `INSERT INTO "tasks" ("task", "date", "user_id", "team_id")
