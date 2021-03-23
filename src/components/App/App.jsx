@@ -13,7 +13,6 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import TaskList from '../TaskList/TaskList';
@@ -97,12 +96,11 @@ function App() {
           <ProtectedRoute
             // with authRedirect:
             // - if logged in, redirects to "/user"
-            // - else shows LandingPage at "/home"
             exact
             path="/team"
             authRedirect="/team"
           >
-            <LandingPage />
+            <TeamSelect />
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
