@@ -21,8 +21,6 @@ function TaskForm(props) {
 
   const classes = useStyles();
 
-  // const [date, setDate] = useState('')
-
   const [input, setInput] = useState(props.edit ? props.edit.value : '');
 
   const user = useSelector(store => store.user)

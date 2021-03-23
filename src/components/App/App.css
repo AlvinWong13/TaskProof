@@ -17,7 +17,7 @@ body {
   margin-left: 32%;
 }
 
-/* --------------------------------------------------------------------------------
+/*---------------------------------------------------------------------------------
 Container
 -------------------------------------------------------------------------------- */
 
@@ -57,8 +57,13 @@ Button
   width: 100%;
 }
 
+.logout {
+  background-color: #202020;
+  color: rgb(255, 255, 255);
+}
+
 .btn:hover {
-  background-color: #FFDF6C;
+  color: #FFDF6C;
   text-decoration: none;
 }
 
@@ -73,7 +78,19 @@ Button
   color: rgb(255, 255, 255);
 }
 
+.nav-title:hover {
+  background-color: transparent;
+  border-color: #FFDF6C;
+  color: #ffdf6c;
+}
+
 .btn_asLink:hover {
+  background-color: transparent;
+  border-color: #FFDF6C;
+  color: #ffdf6c;
+}
+
+.logout:hover {
   background-color: transparent;
   border-color: #FFDF6C;
   color: #ffdf6c;
@@ -122,6 +139,10 @@ input {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
 }
+
+/* --------------------------------------------------------------------------------
+TaskList Treatment
+-------------------------------------------------------------------------------- */
 
 body {
   background: linear-gradient(

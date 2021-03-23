@@ -12,12 +12,12 @@ router.get('/', (req, res) => {
     return;
   }
 
-  const taskQuery = `SELECT * FROM "tasks" WHERE user_id = $1 `;
-  let taskParams = req.user.id
+  const taskQuery = `SELECT * FROM "tasks" WHERE user_id = $1`;
+  let taskParams = [req.user.id]
 
 
   pool
-    .query(taskQuery, [taskParams])
+    .query(taskQuery, taskParams)
     .then((result) => {
       res.send(result.rows);
     })

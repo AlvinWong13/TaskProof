@@ -13,23 +13,25 @@ function Nav() {
   };
 
   if (user.id != null) {
-    loginLinkData.path = '/home';
+    loginLinkData.path = '/calendar';
     loginLinkData.text = 'Home';
   }
 
   return (
     <div className="nav">
       <Link to="/calendar">
-        <h2 className="nav-title">TaskProof</h2>
+        <h1 className="nav-title">TaskProof</h1>
       </Link>
-      <div>
-        {user.id && (
-          <>
+        <div>
+          <Link className="navLink" to={loginLinkData.path}>
+            {loginLinkData.text}
+          </Link>
+      
+          {user.id && (
             <LogOutButton className="navLink" />
-          </>
-        )}
+          )}
+        </div>
       </div>
-    </div>
   );
 }
 
