@@ -9,9 +9,12 @@ body {
   margin: 0px;
 }
 
-img {
-  display: inline-block;
-  max-width: 100%;
+.welcome {
+  color: white;
+  text-align: center;
+  margin-top: 100px;
+  width: 35%;
+  margin-left: 32%;
 }
 
 /* --------------------------------------------------------------------------------
@@ -29,11 +32,11 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
+  border-color: #ffffff;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  /* background-color: #00acb0; */
-  color: rgb(248, 248, 248);
+  background-color: #202020;
+  color: rgb(255, 255, 255);
   font-size: 1.1rem;
   outline: 0;
   cursor: pointer;
@@ -55,7 +58,7 @@ Button
 }
 
 .btn:hover {
-  /* background-color: #008183; */
+  background-color: #FFDF6C;
   text-decoration: none;
 }
 
@@ -67,13 +70,13 @@ Button
   border-radius: 0;
   background: none;
   font: inherit;
-  color: #444;
+  color: rgb(255, 255, 255);
 }
 
 .btn_asLink:hover {
   background-color: transparent;
-  /* border-color: #008183;
-  color: #008183; */
+  border-color: #FFDF6C;
+  color: #FFDF6C;
 }
 
 /* --------------------------------------------------------------------------------
@@ -101,6 +104,7 @@ Form Treatment
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
+  margin-top: 4%;
   background-color: #ffffff;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
@@ -133,17 +137,11 @@ body {
   justify-content: start;
   width: 520px;
   min-height: 600px;
-  background: #202020;
+  background: #000000;
   text-align: center;
   margin: 128px auto;
   border-radius: 10px;
   padding-bottom: 32px;
-}
-
-h1 {
-  margin: 32px 0;
-  color: rgb(0, 0, 0);
-  font-size: 24px;
 }
 
 .complete {
@@ -162,11 +160,11 @@ h1 {
   outline: none;
   width: 320px;
   background: transparent;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
 
 .task-input::placeholder {
-  color: #000000;
+  color: #ffffff;
 }
 
 .task-button {
@@ -185,7 +183,7 @@ h1 {
 }
 
 .task-input.edit {
-  border: 2px solid #149fff;
+  border: 2px solid rgba(60, 24, 116, 1);
 }
 
 .task-button.edit {
