@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import TaskForm from '../TaskForm/TaskForm';
 import Tasks from '../Tasks/Tasks';
 
-function TaskList() {
+function TaskList({date}) {
     const dispatch = useDispatch();
     const taskList = useSelector(store => store.taskList)
     const [tasks, setTasks] = useState([])
@@ -63,18 +63,21 @@ function TaskList() {
     // console.log('taskList HERE!', taskList);
 
   return (
-    <div className="taskList">
-      <h1>What tasks to do today?</h1>
+      <div className="taskList">
       <TaskForm 
-      onSubmit={addTask}
-      updateTask={updateTask}/>
+        onSubmit={addTask}
+        updateTask={updateTask}
+        date = {date}
+      />
       <Tasks 
+        date = {date}
         taskList={taskList}
         tasks={tasks} 
         completeTask={completeTask} 
         removeTask={removeTask}
-        updateTask={updateTask}/>
+        updateTask={updateTask}
+      />
     </div>
-  )
-}
+  );
+};
 export default TaskList;

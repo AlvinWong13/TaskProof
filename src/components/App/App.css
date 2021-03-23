@@ -9,9 +9,12 @@ body {
   margin: 0px;
 }
 
-img {
-  display: inline-block;
-  max-width: 100%;
+.welcome {
+  color: white;
+  text-align: center;
+  margin-top: 100px;
+  width: 35%;
+  margin-left: 32%;
 }
 
 /* --------------------------------------------------------------------------------
@@ -29,11 +32,11 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
+  border-color: #ffffff;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
-  color: #f8f8f8;
+  background-color: #202020;
+  color: rgb(255, 255, 255);
   font-size: 1.1rem;
   outline: 0;
   cursor: pointer;
@@ -55,7 +58,7 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: #FFDF6C;
   text-decoration: none;
 }
 
@@ -67,13 +70,13 @@ Button
   border-radius: 0;
   background: none;
   font: inherit;
-  color: #444;
+  color: rgb(255, 255, 255);
 }
 
 .btn_asLink:hover {
   background-color: transparent;
-  border-color: #008183;
-  color: #008183;
+  border-color: #FFDF6C;
+  color: #ffdf6c;
 }
 
 /* --------------------------------------------------------------------------------
@@ -101,7 +104,8 @@ Form Treatment
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
-  background-color: #efefef;
+  margin-top: 4%;
+  background-color: #ffffff;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
 }
@@ -121,28 +125,23 @@ input {
 
 body {
   background: linear-gradient(
-    90deg,
-    rgba(48, 16, 255, 1) 0%,
-    rgba(100, 115, 255, 1) 100%
+    215deg,
+    #202020 0%,
+    #3F3F3F 100%
   );
 }
+
 .task-app {
   display: flex;
   flex-direction: column;
   justify-content: start;
   width: 520px;
   min-height: 600px;
-  background: #161a2b;
+  background: #000000;
   text-align: center;
   margin: 128px auto;
   border-radius: 10px;
   padding-bottom: 32px;
-}
-
-h1 {
-  margin: 32px 0;
-  color: #fff;
-  font-size: 24px;
 }
 
 .complete {
@@ -155,20 +154,23 @@ h1 {
 }
 
 .task-input {
+  margin-left: 30%;
   padding: 14px 32px 14px 16px;
   border-radius: 4px 0 0 4px;
-  border: 2px solid #5d0cff;
+  border: 2px solid #de354c;
   outline: none;
   width: 320px;
   background: transparent;
-  color: #fff;
+  color: rgb(255, 255, 255);
 }
 
 .task-input::placeholder {
-  color: #e2e2e2;
+  color: #ffffff;
 }
 
 .task-button {
+  margin-top: 5px;
+  margin-left: 44%;
   padding: 16px;
   border: none;
   border-radius: 0 4px 4px 0;
@@ -176,15 +178,15 @@ h1 {
   outline: none;
   background: linear-gradient(
     90deg,
-    rgba(93, 12, 255, 1) 0%,
-    rgba(155, 0, 250, 1) 100%
+    rgba(222, 53, 76, 1) 0%,
+    rgba(60, 24, 116, 1) 100%
   );
-  color: #fff;
+  color: rgb(255, 255, 255);
   text-transform: capitalize;
 }
 
 .task-input.edit {
-  border: 2px solid #149fff;
+  border: 2px solid rgba(60, 24, 116, 1);
 }
 
 .task-button.edit {
@@ -207,11 +209,11 @@ h1 {
   justify-content: space-between;
   align-items: center;
   margin: 4px auto;
-  color: #fff;
+  color: rgb(255, 255, 255);
   background: linear-gradient(
     90deg,
-    rgba(255, 118, 20, 1) 0%,
-    rgba(255, 84, 17, 1) 100%
+    rgba(222, 53, 76, 1) 0%,
+    rgba(60, 24, 116, 1) 100%
   );
 
   padding: 16px;
@@ -223,23 +225,23 @@ h1 {
   background: linear-gradient(
     90deg,
     rgba(93, 12, 255, 1) 0%,
-    rgba(155, 0, 250, 1) 100%
+    rgba(40, 55, 71, 1) 100%
   );
 }
 
 .task-row:nth-child(4n + 2) {
   background: linear-gradient(
     90deg,
-    rgba(255, 12, 241, 1) 0%,
-    rgba(250, 0, 135, 1) 100%
+    rgba(222, 53, 76, 1) 0%,
+    rgba(40, 55, 71, 1) 100%
   );
 }
 
 .task-row:nth-child(4n + 3) {
   background: linear-gradient(
     90deg,
-    rgba(20, 159, 255, 1) 0%,
-    rgba(17, 122, 255, 1) 100%
+    rgba(147, 36, 50, 1) 0%,
+    rgba(40, 55, 71, 1) 100%
   );
 }
 
@@ -252,9 +254,9 @@ h1 {
 
 .delete-icon {
   margin-right: 5px;
-  color: #fff;
+  color: rgb(255, 255, 255);
 }
 
 .edit-icon {
-  color: #fff;
+  color: rgb(255, 255, 255);
 }

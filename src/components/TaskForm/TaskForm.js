@@ -1,10 +1,33 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { Grid, TextField } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import moment from 'moment';
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+}));
 
 function TaskForm(props) {
   const dispatch = useDispatch();
 
+  const classes = useStyles();
+
+  // const [date, setDate] = useState('')
+
   const [input, setInput] = useState(props.edit ? props.edit.value : '');
+
+  const user = useSelector(store => store.user)
+
+  const team = useSelector(store => store.team)
 
   const inputRef = useRef(null)
 
@@ -17,18 +40,27 @@ function TaskForm(props) {
     setInput(e.target.value);
   };
 
+  const handleDateChange = e => {
+    setDate(e.target.value);
+  }
+
   const handleSubmit = e => {
     e.preventDefault();
-    if(!props.edit.id) {
+    if(!props.edit) {
       dispatch({
         type: 'ADD_TASK',
-        payload: {task: input}
+        payload: {
+          task: input,
+          date: moment(props.date).format('MM-DD-YYYY'),
+          user: user,
+        }
       })
     }
 
     props.onSubmit({
       text: input
     });
+    
     setInput('');
   };
 
@@ -56,6 +88,19 @@ function TaskForm(props) {
           onChange={handleChange}
           ref={inputRef}
         />
+        <Grid container justify="space-around">
+          <TextField
+            id="date"
+            label="Task Date"
+            type="date"
+            defaultValue={moment(props.date).format('YYYY-MM-DD')}
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={handleDateChange}
+          />
+        </Grid>
         <button  className="task-button"> Add Task </button>
       </>
       )}
