@@ -32,7 +32,7 @@ Button
   border-color: #014041;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  /* background-color: #00acb0; */
   color: rgb(248, 248, 248);
   font-size: 1.1rem;
   outline: 0;
@@ -55,7 +55,7 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  /* background-color: #008183; */
   text-decoration: none;
 }
 
@@ -72,8 +72,8 @@ Button
 
 .btn_asLink:hover {
   background-color: transparent;
-  border-color: #008183;
-  color: #008183;
+  /* border-color: #008183;
+  color: #008183; */
 }
 
 /* --------------------------------------------------------------------------------
@@ -121,18 +121,19 @@ input {
 
 body {
   background: linear-gradient(
-    90deg,
-    rgb(48, 48, 48) 0%,
-    rgb(78, 80, 95) 100%
+    215deg,
+    #202020 0%,
+    #3F3F3F 100%
   );
 }
+
 .task-app {
   display: flex;
   flex-direction: column;
   justify-content: start;
   width: 520px;
   min-height: 600px;
-  background: #aaa9a9;
+  background: #202020;
   text-align: center;
   margin: 128px auto;
   border-radius: 10px;
@@ -157,7 +158,7 @@ h1 {
 .task-input {
   padding: 14px 32px 14px 16px;
   border-radius: 4px 0 0 4px;
-  border: 2px solid #5d0cff;
+  border: 2px solid #de354c;
   outline: none;
   width: 320px;
   background: transparent;
@@ -176,10 +177,10 @@ h1 {
   outline: none;
   background: linear-gradient(
     90deg,
-    rgba(93, 12, 255, 1) 0%,
-    rgba(155, 0, 250, 1) 100%
+    rgba(222, 53, 76, 1) 0%,
+    rgba(60, 24, 116, 1) 100%
   );
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   text-transform: capitalize;
 }
 
@@ -207,11 +208,11 @@ h1 {
   justify-content: space-between;
   align-items: center;
   margin: 4px auto;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   background: linear-gradient(
     90deg,
-    rgba(255, 118, 20, 1) 0%,
-    rgba(255, 84, 17, 1) 100%
+    rgba(222, 53, 76, 1) 0%,
+    rgba(60, 24, 116, 1) 100%
   );
 
   padding: 16px;
@@ -223,23 +224,23 @@ h1 {
   background: linear-gradient(
     90deg,
     rgba(93, 12, 255, 1) 0%,
-    rgba(155, 0, 250, 1) 100%
+    rgba(40, 55, 71, 1) 100%
   );
 }
 
 .task-row:nth-child(4n + 2) {
   background: linear-gradient(
     90deg,
-    rgba(255, 12, 241, 1) 0%,
-    rgba(250, 0, 135, 1) 100%
+    rgba(222, 53, 76, 1) 0%,
+    rgba(40, 55, 71, 1) 100%
   );
 }
 
 .task-row:nth-child(4n + 3) {
   background: linear-gradient(
     90deg,
-    rgba(20, 159, 255, 1) 0%,
-    rgba(17, 122, 255, 1) 100%
+    rgba(40, 55, 71, 1) 0%,
+    rgba(222, 53, 76, 1) 100%
   );
 }
 
@@ -252,9 +253,9 @@ h1 {
 
 .delete-icon {
   margin-right: 5px;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
 
 .edit-icon {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }

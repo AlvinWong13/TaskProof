@@ -19,14 +19,10 @@ function Nav() {
 
   return (
     <div className="nav">
-      <Link to="/home">
+      <Link to="/calendar">
         <h2 className="nav-title">TaskProof</h2>
       </Link>
       <div>
-        <Link className="navLink" to={loginLinkData.path}>
-          {loginLinkData.text}
-        </Link>
-
         {user.id && (
           <>
             <LogOutButton className="navLink" />

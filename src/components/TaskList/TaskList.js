@@ -31,26 +31,13 @@ const ModalContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  line-height: 1.8;
-  color: #141414;
-  p {
-    margin-bottom: 1rem;
-  }
-  button {
-    padding: 10px 24px;
-    background: #141414;
-    color: #fff;
-    border: none;
-  }
 `;
 
 const CloseModalButton = styled(MdClose)`
   cursor: pointer;
   position: absolute;
   top: 20px
-  right: 20px;
   width: 32px;
-  width: 32px
   height: 32px;
   padding: 0;
   z-index: 10;
@@ -117,12 +104,16 @@ function TaskList({showTaskList, setShowTaskList}) {
 
   return (
     <>
-    {showTaskList ? 
+    {/* {showTaskList ? 
     <Background>
       <ModalWrapper showTaskList={showTaskList}>
-        <ModalContent>
+      <CloseModalButton
+          aria-label='Close modal'
+          onClick={() => setShowTaskList(prev => !prev)}
+        />
+        <ModalContent> */}
+      
       <div className="taskList">
-      <h1>What tasks to do today?</h1>
       <TaskForm 
         onSubmit={addTask}
         updateTask={updateTask}
@@ -135,14 +126,11 @@ function TaskList({showTaskList, setShowTaskList}) {
         updateTask={updateTask}
       />
     </div>
-        </ModalContent>
-        <CloseModalButton
-          aria-label='Close modal'
-          onClick={() => setShowTaskList(prev => !prev)}
-        />
+        {/* </ModalContent>
+
       </ModalWrapper>
     </Background>
-    : null}
+    : null} */}
     </>
   );
 };

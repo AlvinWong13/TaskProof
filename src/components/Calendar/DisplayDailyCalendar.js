@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import dateFns from "date-fns";
 import TaskList from "../TaskList/TaskList";
+import PopupTasks from '../PopupTasks/PopupTasks';
 
 const DisplayDailyCalendar = props => {
   const today = new Date();
@@ -22,10 +23,6 @@ const DisplayDailyCalendar = props => {
   const endDate = dateFns.endOfWeek(monthEnd);
 
   const [showTaskList, setShowTaskList] = useState(false);
-
-  const openTaskList = () => {
-    setShowTaskList(prev => !prev);
-  };
 
   const weekdays = [
     { id: 0, day: "Sun" },
@@ -52,7 +49,7 @@ const DisplayDailyCalendar = props => {
       const cloneDay = day;
       daysOfWeek.push(
         <TableCell key={formattedDate}
-        onClick={openTaskList}>
+        onClick={() => setShowTaskList(true)}>
           <CardActionArea
             onClick={() => props.onDateClick(dateFns.parse(cloneDay))}
             style={{ height: "100%" }}
@@ -120,9 +117,18 @@ const DisplayDailyCalendar = props => {
       </TableHead>
       <TableBody>{eachWeek}</TableBody>
     </Table>
-    <TaskList
+    {/* <TaskList
     showTaskList = {showTaskList}
-    setShowTaskList = {setShowTaskList} />
+    setShowTaskList = {setShowTaskList} /> */}
+    <PopupTasks
+        title="What tasks to do today?"
+        showTaskList={showTaskList}
+        setShowTaskList={setShowTaskList}
+      >
+        <TaskList 
+          showTaskList = {showTaskList}
+          setShowTaskList = {setShowTaskList}/>
+      </PopupTasks>
   </>
   );
 };
