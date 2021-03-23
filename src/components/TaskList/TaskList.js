@@ -2,48 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TaskForm from '../TaskForm/TaskForm';
 import Tasks from '../Tasks/Tasks';
-import { MdClose } from 'react-icons/md';
-import styled from 'styled-components';
 
-const Background = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ModalWrapper = styled.div`
-    width: 450px;
-    height: 500px;
-    box-shadow: 0 5px 16px rgba(0, 0, 0 ,0.2);
-    background: #aaa9a9;
-    color: #000;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    z-index: 10;
-    border-radius: 10px;
-`;
-
-const ModalContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const CloseModalButton = styled(MdClose)`
-  cursor: pointer;
-  position: absolute;
-  top: 20px
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  z-index: 10;
-`;
-
-function TaskList({showTaskList, setShowTaskList}) {
+function TaskList() {
     const dispatch = useDispatch();
     const taskList = useSelector(store => store.taskList)
     const [tasks, setTasks] = useState([])
@@ -103,16 +63,6 @@ function TaskList({showTaskList, setShowTaskList}) {
     // console.log('taskList HERE!', taskList);
 
   return (
-    <>
-    {/* {showTaskList ? 
-    <Background>
-      <ModalWrapper showTaskList={showTaskList}>
-      <CloseModalButton
-          aria-label='Close modal'
-          onClick={() => setShowTaskList(prev => !prev)}
-        />
-        <ModalContent> */}
-      
       <div className="taskList">
       <TaskForm 
         onSubmit={addTask}
@@ -126,12 +76,6 @@ function TaskList({showTaskList, setShowTaskList}) {
         updateTask={updateTask}
       />
     </div>
-        {/* </ModalContent>
-
-      </ModalWrapper>
-    </Background>
-    : null} */}
-    </>
   );
 };
 export default TaskList;
