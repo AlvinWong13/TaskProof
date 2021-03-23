@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TaskForm from '../TaskForm/TaskForm';
 import Tasks from '../Tasks/Tasks';
+import moment from 'moment';
 
 function TaskList({date}) {
     const dispatch = useDispatch();
@@ -10,9 +11,12 @@ function TaskList({date}) {
 
     useEffect(() => {
       dispatch({
-        type: 'FETCH_TASKS'
+        type: 'FETCH_TASKS',
+        payload: moment(date).format('YYYY-MM-DD'),
       });
     }, [])
+
+    // console.log('what is the date?', date);
 
     const addTask = task => {
       if(!task.text || /^\s*$/.test(task.text)){
@@ -34,7 +38,8 @@ function TaskList({date}) {
       setTasks(removeArr)
 
       dispatch({
-        type: 'FETCH_TASKS'
+        type: 'FETCH_TASKS',
+        payload: moment(date).format('YYYY-MM-DD'),
       });
     };
 

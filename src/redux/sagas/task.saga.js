@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-function* fetchTasks() {
+function* fetchTasks(action) {
   try {
-    const tasks = yield axios.get('/api/tasks');
-    // console.log('what are my tasks?!', tasks.data);
+    const tasks = yield axios.get(`/api/tasks/${action.payload}`);
+    console.log('what is my data', tasks.data);
     yield put({
       type: 'SET_TASKS',
       payload: tasks.data

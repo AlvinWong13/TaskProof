@@ -6,15 +6,18 @@ const router = express.Router();
 /**
  * GET route
  */
-router.get('/', (req, res) => {
+router.get('/:date', (req, res) => {
   if(!req.isAuthenticated()) {
     res.sendStatus(403)
     return;
   }
+  const date = req.params.date;
+  console.log('date?', date);
+  // const targetDate = Intl.DateTimeFormat('en-US').format(date)
+  // console.log('what is the date that I clicked?', targetDate);
 
-  const taskQuery = `SELECT * FROM "tasks" WHERE user_id = $1`;
-  let taskParams = [req.user.id]
-
+  const taskQuery = `SELECT * FROM "tasks" WHERE user_id = $1 AND date = $2 ORDER BY "tasks".id ASC;`;
+  let taskParams = [req.user.id, date]
 
   pool
     .query(taskQuery, taskParams)

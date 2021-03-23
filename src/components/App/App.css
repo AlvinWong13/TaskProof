@@ -7,6 +7,11 @@ body,
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
+  background: linear-gradient(
+    215deg,
+    #202020 0%,
+    #3F3F3F 100%
+  );
 }
 
 .welcome {
@@ -143,14 +148,6 @@ input {
 /* --------------------------------------------------------------------------------
 TaskList Treatment
 -------------------------------------------------------------------------------- */
-
-body {
-  background: linear-gradient(
-    215deg,
-    #202020 0%,
-    #3F3F3F 100%
-  );
-}
 
 .task-app {
   display: flex;
