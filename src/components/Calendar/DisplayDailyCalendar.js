@@ -46,6 +46,8 @@ const DisplayDailyCalendar = props => {
   while (day <= end) {
     for (let i = 0; i < 7; i++) {
       formattedDate = dateFns.format(day, dateFormat);
+      // console.log('what day is it?', day);
+      // console.log('what is the selected day', selectedDate);
       const cloneDay = day;
       daysOfWeek.push(
         <TableCell key={formattedDate}
@@ -127,7 +129,8 @@ const DisplayDailyCalendar = props => {
       >
         <TaskList 
           showTaskList = {showTaskList}
-          setShowTaskList = {setShowTaskList}/>
+          setShowTaskList = {setShowTaskList}
+          date = {selectedDate}/>
       </PopupTasks>
   </>
   );

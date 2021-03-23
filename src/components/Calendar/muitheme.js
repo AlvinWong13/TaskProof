@@ -7,8 +7,8 @@ export const darkTheme = createMuiTheme({
     useNextVariants: true
   },
   palette: {
-    primary: { main: teal["A100"] },
-    secondary: { main: orange["A100"], light: orange[500] },
+    primary: { main: '#ffdf6c' },
+    secondary: { main: '#000000', light: '#ffdf6c' },
     caution: { main: red[500] },
     type: "dark"
   }

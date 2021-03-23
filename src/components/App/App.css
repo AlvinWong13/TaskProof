@@ -76,7 +76,7 @@ Button
 .btn_asLink:hover {
   background-color: transparent;
   border-color: #FFDF6C;
-  color: #FFDF6C;
+  color: #ffdf6c;
 }
 
 /* --------------------------------------------------------------------------------
@@ -154,6 +154,7 @@ body {
 }
 
 .task-input {
+  margin-left: 30%;
   padding: 14px 32px 14px 16px;
   border-radius: 4px 0 0 4px;
   border: 2px solid #de354c;
@@ -168,6 +169,8 @@ body {
 }
 
 .task-button {
+  margin-top: 5px;
+  margin-left: 44%;
   padding: 16px;
   border: none;
   border-radius: 0 4px 4px 0;
@@ -237,8 +240,8 @@ body {
 .task-row:nth-child(4n + 3) {
   background: linear-gradient(
     90deg,
-    rgba(40, 55, 71, 1) 0%,
-    rgba(222, 53, 76, 1) 100%
+    rgba(147, 36, 50, 1) 0%,
+    rgba(40, 55, 71, 1) 100%
   );
 }
 

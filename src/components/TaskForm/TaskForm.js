@@ -21,7 +21,7 @@ function TaskForm(props) {
 
   const classes = useStyles();
 
-  const [date, setDate] = useState('')
+  // const [date, setDate] = useState('')
 
   const [input, setInput] = useState(props.edit ? props.edit.value : '');
 
@@ -51,7 +51,7 @@ function TaskForm(props) {
         type: 'ADD_TASK',
         payload: {
           task: input,
-          date: moment(date).format('MM-DD-YYYY'),
+          date: moment(props.date).format('MM-DD-YYYY'),
           user: user,
         }
       })
@@ -88,13 +88,12 @@ function TaskForm(props) {
           onChange={handleChange}
           ref={inputRef}
         />
-        <button  className="task-button"> Add Task </button>
         <Grid container justify="space-around">
           <TextField
             id="date"
             label="Task Date"
             type="date"
-            defaultValue="2021-03-22"
+            defaultValue={moment(props.date).format('YYYY-MM-DD')}
             className={classes.textField}
             InputLabelProps={{
               shrink: true,
@@ -102,6 +101,7 @@ function TaskForm(props) {
             onChange={handleDateChange}
           />
         </Grid>
+        <button  className="task-button"> Add Task </button>
       </>
       )}
     </form>
