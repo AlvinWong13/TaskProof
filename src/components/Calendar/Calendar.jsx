@@ -20,8 +20,9 @@ export default class Calendar extends Component {
     selectStartandEnd: false,
     selected1: null,
     selected2: null,
-    functionalMode: false
+    functionalMode: false,
   };
+
 
   /***************************************************************************************
    * Calender Header functions
@@ -243,6 +244,7 @@ export default class Calendar extends Component {
     if (this.state.mode === 0) {
       body = (
         <DisplayDailyCalendar
+          selectedTeam={this.props.teamId}
           selectedDate={this.state.selectedDate}
           onDateClick={this.onDateClick}
           light={textColor}

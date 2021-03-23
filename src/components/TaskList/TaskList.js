@@ -4,7 +4,7 @@ import TaskForm from '../TaskForm/TaskForm';
 import Tasks from '../Tasks/Tasks';
 import moment from 'moment';
 
-function TaskList({date}) {
+function TaskList({ date, team }) {
     const dispatch = useDispatch();
     const taskList = useSelector(store => store.taskList)
     const [tasks, setTasks] = useState([])
@@ -12,9 +12,13 @@ function TaskList({date}) {
     useEffect(() => {
       dispatch({
         type: 'FETCH_TASKS',
-        payload: moment(date).format('YYYY-MM-DD'),
+        payload: {
+          date: moment(date).format('YYYY-MM-DD'),
+          team: team
+        }
       });
     }, [])
+
 
     // console.log('what is the date?', date);
 
@@ -40,6 +44,7 @@ function TaskList({date}) {
       dispatch({
         type: 'FETCH_TASKS',
         payload: moment(date).format('YYYY-MM-DD'),
+        team: team
       });
     };
 
@@ -66,15 +71,18 @@ function TaskList({date}) {
     }
 
     // console.log('taskList HERE!', taskList);
+    console.log('what is my team in taskList', team);
 
   return (
       <div className="taskList">
-      <TaskForm 
+      <TaskForm
+        team = {team}
         onSubmit={addTask}
         updateTask={updateTask}
         date = {date}
       />
-      <Tasks 
+      <Tasks
+        team = {team}
         date = {date}
         taskList={taskList}
         tasks={tasks} 

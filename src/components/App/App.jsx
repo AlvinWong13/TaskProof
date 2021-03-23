@@ -18,6 +18,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import TaskList from '../TaskList/TaskList';
 import TeamSelect from '../TeamSelect/TeamSelect';
 import Calendar from '../Calendar/Calendar';
+import Home from '../Home/Home';
 
 import './App.css';
 
@@ -37,26 +38,17 @@ function App() {
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
-            path="/team"
+            path="/home"
           >
-              <TeamSelect />
+              <Home />
           </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shows Calendar else shows LoginPage
             exact
-            path="/calendar"
+            path="/home"
           >
-            {/* <div className='task-app'>
-              <TaskList />
-            </div> */}
-            <Calendar 
-              generalStyle={{
-                maxWidth: "100%",
-                margin: "0 auto",
-                height: "100%",
-                overflow: "auto"
-              }}/>
+            <Home />
           </ProtectedRoute>
           <ProtectedRoute
             // logged in shows Calendar else shows LoginPage

@@ -179,7 +179,7 @@ TaskList Treatment
   outline: none;
   width: 320px;
   background: transparent;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
 
 .task-input::placeholder {
@@ -251,15 +251,15 @@ TaskList Treatment
   background: linear-gradient(
     90deg,
     rgba(222, 53, 76, 1) 0%,
-    rgba(40, 55, 71, 1) 100%
+    rgba(60, 24, 116, 1) 100%
   );
 }
 
 .task-row:nth-child(4n + 3) {
   background: linear-gradient(
     90deg,
-    rgba(147, 36, 50, 1) 0%,
-    rgba(40, 55, 71, 1) 100%
+    rgba(93, 12, 255, 1) 0%,
+    rgba(60, 24, 116, 1) 100%
   );
 }
 

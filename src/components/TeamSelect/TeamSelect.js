@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import TaskList from '../TaskList/TaskList';
 
 function TeamSelect() {
   const teamSelect = useSelector(store => store.teamSelect);
@@ -9,11 +10,11 @@ function TeamSelect() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  useEffect(() => {
-    dispatch({
-      type: 'GET_TEAM_SELECT',
-    });
-  }, []);
+  // useEffect(() => {
+  //   dispatch({
+  //     type: 'GET_TEAM_SELECT',
+  //   });
+  // }, []);
 
   const registerTeam = (event) => {
     event.preventDefault();
@@ -23,13 +24,15 @@ function TeamSelect() {
     // });
   };
 
-  const selectTeam = () => {
-    dispatch({
-      type: 'SELECT_TEAM',
-      payload: teamId
-    })
-    history.push('/calendar')
-  };
+  // const selectTeam = () => {
+  //   dispatch({
+  //     type: 'SELECT_TEAM',
+  //     payload: teamId
+  //   })
+  //   history.push('/home')
+  // };
+
+  // console.log('what is my team', teamId);
 
   // console.log('what teams am i getting?', teamSelect);
   return(
@@ -50,7 +53,7 @@ function TeamSelect() {
         <button>Create</button>
       </div>
       </form>
-      <select
+      {/* <select
         name="text"
         id="pickTeam"
         value={teamId}
@@ -62,7 +65,9 @@ function TeamSelect() {
               )
             })}
       </select>
-      <button onClick={() => selectTeam()}>Select</button>
+      <button onClick={() => selectTeam()}>Select</button> */}
+      {/* <TaskList 
+        teamId = {teamId}/> */}
     </>
   )
 }

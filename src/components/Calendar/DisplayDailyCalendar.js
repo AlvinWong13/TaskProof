@@ -22,7 +22,10 @@ const DisplayDailyCalendar = props => {
   const startDate = dateFns.startOfWeek(monthStart);
   const endDate = dateFns.endOfWeek(monthEnd);
 
+  const team = props.selectedTeam;
   const [showTaskList, setShowTaskList] = useState(false);
+
+  console.log('what is my team in calendar?', props.selectedTeam);
 
   const weekdays = [
     { id: 0, day: "Sun" },
@@ -130,7 +133,8 @@ const DisplayDailyCalendar = props => {
         <TaskList 
           showTaskList = {showTaskList}
           setShowTaskList = {setShowTaskList}
-          date = {selectedDate}/>
+          date = {selectedDate}
+          team = {team}/>
       </PopupTasks>
   </>
   );

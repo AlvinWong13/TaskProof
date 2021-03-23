@@ -6,22 +6,26 @@ const router = express.Router();
 /**
  * GET route
  */
-router.get('/:date', (req, res) => {
+router.get('/:date/:team', (req, res) => {
   if(!req.isAuthenticated()) {
     res.sendStatus(403)
     return;
   }
   const date = req.params.date;
   console.log('date?', date);
-  // const targetDate = Intl.DateTimeFormat('en-US').format(date)
-  // console.log('what is the date that I clicked?', targetDate);
+  const team = req.params.team;
+  console.log('team params', req.params.team);
 
-  const taskQuery = `SELECT * FROM "tasks" WHERE user_id = $1 AND date = $2 ORDER BY "tasks".id ASC;`;
-  let taskParams = [req.user.id, date]
+  const taskQuery = `SELECT * FROM "tasks" 
+      WHERE user_id = $1 AND date = $2 AND team_id = $3
+      ORDER BY "tasks".id ASC;
+  `;
+  let taskParams = [req.user.id, date, team]
 
   pool
     .query(taskQuery, taskParams)
     .then((result) => {
+      console.log('results', result.rows);
       res.send(result.rows);
     })
     .catch(error => {
@@ -36,13 +40,13 @@ router.get('/:date', (req, res) => {
 router.post('/', rejectUnauthenticated, (req, res) => {
   // console.log(req.body.task);
   // console.log(req.user.id);
-  console.log(req.body.date)
+  console.log(req.body.team)
   // console.log(req.body.team.id);
 
-  const taskQuery = `INSERT INTO "tasks" ("task", "date", "user_id")
-    VALUES ($1, $2, $3);`;
+  const taskQuery = `INSERT INTO "tasks" ("task", "date", "user_id", "team_id")
+    VALUES ($1, $2, $3, $4);`;
   pool
-    .query(taskQuery, [req.body.task, req.body.date, req.user.id,])
+    .query(taskQuery, [req.body.task, req.body.date, req.user.id, req.body.team])
     .then(() => res.sendStatus(200))
     .catch(error => {
       console.log('Adding task failed', error)
