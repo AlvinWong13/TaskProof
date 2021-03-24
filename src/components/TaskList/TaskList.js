@@ -73,7 +73,7 @@ function TaskList({ date, team }) {
     }
 
     // console.log('taskList HERE!', taskList);
-    console.log('what is my team in taskList', team);
+    // console.log('what is my team in taskList', team);
 
   return (
       <div className="taskList">

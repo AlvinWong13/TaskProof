@@ -21,7 +21,7 @@ function LoginForm() {
           password: password,
         },
       });
-      history.push('/team')
+      history.push('/home')
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }

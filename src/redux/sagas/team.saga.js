@@ -3,7 +3,7 @@ import { put, takeEvery } from 'redux-saga/effects';
 
 function* selectTeam(action) {
   try {
-    console.log('SELECT TEAM');
+    // console.log('SELECT TEAM');
     const response = yield axios.get(`/api/team/all`)
     yield put({
       type: 'SET_TEAM_SELECT',

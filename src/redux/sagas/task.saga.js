@@ -21,7 +21,7 @@ function* addTask(action) {
     yield axios.post('/api/tasks', action.payload);
     yield put({
       type: 'FETCH_TASKS'
-    });
+    })
   }
   catch (error) {
     console.log('Error adding task', error);
@@ -32,6 +32,9 @@ function* deleteTask(action) {
   // console.log('WHAT IS MY DELETE ACTION', action.payload);
   try {
     yield axios.delete(`/api/tasks/${action.payload}`);
+    yield put({
+      type: 'FETCH_TASKS'
+    })
   }
   catch (error) {
     console.log('Error Deleting Task');

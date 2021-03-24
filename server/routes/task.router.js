@@ -25,7 +25,6 @@ router.get('/:date/:team', (req, res) => {
   pool
     .query(taskQuery, taskParams)
     .then((result) => {
-      console.log('results', result.rows);
       res.send(result.rows);
     })
     .catch(error => {
@@ -40,7 +39,7 @@ router.get('/:date/:team', (req, res) => {
 router.post('/', rejectUnauthenticated, (req, res) => {
   // console.log(req.body.task);
   // console.log(req.user.id);
-  console.log('what is my req.body?',req.body)
+  // console.log('what is my req.body?',req.body)
   // console.log(req.body.team.id);
 
   const taskQuery = `INSERT INTO "tasks" ("task", "date", "user_id", "team_id")

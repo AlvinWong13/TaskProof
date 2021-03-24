@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Calendar from '../Calendar/Calendar';
 
+
 function Home() {
   const dispatch = useDispatch();
   const teamSelect = useSelector(store => store.teamSelect);
@@ -21,12 +22,12 @@ function Home() {
     })
   };
 
-  console.log('what is my team?', teamId);
-  console.log ('what is my teamSelect?', teamSelect);
+  // console.log('what is my team?', teamId);
+  // console.log ('what is my teamSelect?', teamSelect);
 
   return (
     <>
-    <div> 
+    <div className="selectDropdown"> 
       <select
         name="text"
         id="pickTeam"
@@ -39,7 +40,8 @@ function Home() {
               )
             })}
       </select>
-      <button onClick={() => selectTeam()}>Select</button> </div>
+      <button onClick={() => selectTeam()}>Select</button> 
+    </div> <br />
     <div>
       <Calendar 
         teamId = {teamId}
