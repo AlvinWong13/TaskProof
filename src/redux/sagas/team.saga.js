@@ -27,9 +27,23 @@ function* postNewTeam(action) {
   }
 }
 
+function* teamMembers(action) {
+  try {
+    yield axios.get('/api/team/members', action.payload)
+    yield put({
+      type: 'SET_TEAM_MEMBERS',
+      payload: id
+    })
+  }
+  catch (error) {
+    console.log('Error getting all team members', error)
+  }
+}
+
 function* teamSaga() {
   yield takeEvery('GET_TEAM_SELECT', selectTeam);
-  yield takeEvery('CREATE_TEAM', postNewTeam)
+  yield takeEvery('CREATE_TEAM', postNewTeam);
+  yield takeEvery('GET_TEAM_MEMBERS', teamMembers);
 }
 
 export default teamSaga;

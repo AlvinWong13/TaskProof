@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -35,10 +36,20 @@ TabPanel.propTypes = {
 };
 
 const useStyles = makeStyles((theme) => ({
+  palette: {
+    primary: {
+      main: "#ffdf6c",
+    },
+    secondary: {
+      main: "#202020",
+    },
+  },
   root: {
     flexGrow: 1,
     backgroundColor: "#00000099",
     color: "#ffdf6c",
+    marginLeft: 400,
+    marginRight: 400,
   },
 }));
 
@@ -46,6 +57,15 @@ export default function FullWidthTabs() {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
+  const dispatch = useDispatch();
+
+  const teamSelect = useSelector(store => store.teamSelect);
+
+  useEffect(() => {
+    dispatch({
+      type: 'GET_TEAM_SELECT',
+    });
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -59,16 +79,20 @@ export default function FullWidthTabs() {
     <div className={classes.root}>
       <AppBar position="static" color="primary">
         <Tabs
-          value={value}
           onChange={handleChange}
           indicatorColor="primary"
           textColor="secondary"
           variant="fullWidth"
-          aria-label="full width tabs example"
-        >
-          <Tab label="Item One" />
-          <Tab label="Item Two"  />
-          <Tab label="Item Three" />
+          >
+          {teamSelect.map(team => {
+            return(
+              <Tab 
+              key={team.id} 
+              value={team.id} 
+              label={team.name}
+              />
+            )
+          })}
         </Tabs>
       </AppBar>
       <SwipeableViews
