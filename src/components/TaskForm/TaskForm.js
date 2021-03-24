@@ -49,7 +49,7 @@ function TaskForm(props) {
         type: 'ADD_TASK',
         payload: {
           task: input,
-          date: moment(props.date).format('MM-DD-YYYY'),
+          date: moment(props.date).format('YYYY-MM-DD'),
           user: user,
           team: team
         }
@@ -61,6 +61,13 @@ function TaskForm(props) {
     });
     
     setInput('');
+    dispatch({
+      type: 'FETCH_TASKS',
+      payload: {
+        date: moment(props.date).format('YYYY-MM-DD'),
+        team: team
+      }
+    })
   };
 
   return (

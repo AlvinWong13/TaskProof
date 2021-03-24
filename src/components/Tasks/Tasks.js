@@ -35,7 +35,10 @@ function Tasks({ team, date, taskList, completeTask, removeTask, updateTask }) {
 
     dispatch({
       type: 'FETCH_TASKS',
-      payload: moment(date).format('YYYY-MM-DD'),
+      payload: {
+        date: moment(date).format('YYYY-MM-DD'),
+        team: team
+      }
     });
   }
 
