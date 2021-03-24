@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-function* fetchTasks() {
+function* fetchTasks(action) {
   try {
-    const tasks = yield axios.get('/api/tasks');
-    // console.log('what are my tasks?!', tasks.data);
+    const tasks = yield axios.get(`/api/tasks/${action.payload.date}/${action.payload.team}`);
+    // console.log('what is my data', action.payload.date);
+    // console.log('action.payload', action.payload);
     yield put({
       type: 'SET_TASKS',
       payload: tasks.data
@@ -20,7 +21,7 @@ function* addTask(action) {
     yield axios.post('/api/tasks', action.payload);
     yield put({
       type: 'FETCH_TASKS'
-    });
+    })
   }
   catch (error) {
     console.log('Error adding task', error);
@@ -31,6 +32,9 @@ function* deleteTask(action) {
   // console.log('WHAT IS MY DELETE ACTION', action.payload);
   try {
     yield axios.delete(`/api/tasks/${action.payload}`);
+    yield put({
+      type: 'FETCH_TASKS'
+    })
   }
   catch (error) {
     console.log('Error Deleting Task');

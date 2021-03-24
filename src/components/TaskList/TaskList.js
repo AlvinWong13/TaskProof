@@ -2,17 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TaskForm from '../TaskForm/TaskForm';
 import Tasks from '../Tasks/Tasks';
+import moment from 'moment';
 
-function TaskList({date}) {
+function TaskList({ date, team }) {
     const dispatch = useDispatch();
     const taskList = useSelector(store => store.taskList)
     const [tasks, setTasks] = useState([])
 
     useEffect(() => {
       dispatch({
-        type: 'FETCH_TASKS'
+        type: 'FETCH_TASKS',
+        payload: {
+          date: moment(date).format('YYYY-MM-DD'),
+          team: team
+        }
       });
     }, [])
+
+
+    // console.log('what is the date?', date);
 
     const addTask = task => {
       if(!task.text || /^\s*$/.test(task.text)){
@@ -34,7 +42,11 @@ function TaskList({date}) {
       setTasks(removeArr)
 
       dispatch({
-        type: 'FETCH_TASKS'
+        type: 'FETCH_TASKS',
+        payload: {
+          date: moment(date).format('YYYY-MM-DD'),
+          team: team
+        }
       });
     };
 
@@ -61,15 +73,18 @@ function TaskList({date}) {
     }
 
     // console.log('taskList HERE!', taskList);
+    // console.log('what is my team in taskList', team);
 
   return (
       <div className="taskList">
-      <TaskForm 
+      <TaskForm
+        team = {team}
         onSubmit={addTask}
         updateTask={updateTask}
         date = {date}
       />
-      <Tasks 
+      <Tasks
+        team = {team}
         date = {date}
         taskList={taskList}
         tasks={tasks} 

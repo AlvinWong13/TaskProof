@@ -7,6 +7,11 @@ body,
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
+  background: linear-gradient(
+    215deg,
+    #202020 0%,
+    #3F3F3F 100%
+  );
 }
 
 .welcome {
@@ -17,7 +22,7 @@ body {
   margin-left: 32%;
 }
 
-/* --------------------------------------------------------------------------------
+/*---------------------------------------------------------------------------------
 Container
 -------------------------------------------------------------------------------- */
 
@@ -57,8 +62,13 @@ Button
   width: 100%;
 }
 
+.logout {
+  background-color: #202020;
+  color: rgb(255, 255, 255);
+}
+
 .btn:hover {
-  background-color: #FFDF6C;
+  color: #FFDF6C;
   text-decoration: none;
 }
 
@@ -73,10 +83,31 @@ Button
   color: rgb(255, 255, 255);
 }
 
+.nav-title:hover {
+  background-color: transparent;
+  border-color: #FFDF6C;
+  color: #ffdf6c;
+}
+
 .btn_asLink:hover {
   background-color: transparent;
   border-color: #FFDF6C;
   color: #ffdf6c;
+}
+
+.logout:hover {
+  background-color: transparent;
+  border-color: #FFDF6C;
+  color: #ffdf6c;
+}
+
+/* --------------------------------------------------------------------------------
+Select
+-------------------------------------------------------------------------------- */
+.selectDropdown {
+  position: absolute;
+  right: 5px;
+
 }
 
 /* --------------------------------------------------------------------------------
@@ -123,13 +154,9 @@ input {
     'Lucida Sans', Arial, sans-serif;
 }
 
-body {
-  background: linear-gradient(
-    215deg,
-    #202020 0%,
-    #3F3F3F 100%
-  );
-}
+/* --------------------------------------------------------------------------------
+TaskList Treatment
+-------------------------------------------------------------------------------- */
 
 .task-app {
   display: flex;
@@ -161,7 +188,7 @@ body {
   outline: none;
   width: 320px;
   background: transparent;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
 
 .task-input::placeholder {
@@ -233,15 +260,15 @@ body {
   background: linear-gradient(
     90deg,
     rgba(222, 53, 76, 1) 0%,
-    rgba(40, 55, 71, 1) 100%
+    rgba(60, 24, 116, 1) 100%
   );
 }
 
 .task-row:nth-child(4n + 3) {
   background: linear-gradient(
     90deg,
-    rgba(147, 36, 50, 1) 0%,
-    rgba(40, 55, 71, 1) 100%
+    rgba(93, 12, 255, 1) 0%,
+    rgba(60, 24, 116, 1) 100%
   );
 }
 

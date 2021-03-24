@@ -21,13 +21,11 @@ function TaskForm(props) {
 
   const classes = useStyles();
 
-  // const [date, setDate] = useState('')
-
   const [input, setInput] = useState(props.edit ? props.edit.value : '');
 
   const user = useSelector(store => store.user)
 
-  const team = useSelector(store => store.team)
+  const team = props.team
 
   const inputRef = useRef(null)
 
@@ -53,6 +51,7 @@ function TaskForm(props) {
           task: input,
           date: moment(props.date).format('MM-DD-YYYY'),
           user: user,
+          team: team
         }
       })
     }

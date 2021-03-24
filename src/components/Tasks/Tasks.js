@@ -5,7 +5,7 @@ import { RiCloseCircleLine } from 'react-icons/ri';
 import { TiEdit } from 'react-icons/ti';
 import moment from 'moment';
 
-function Tasks({ date, taskList, completeTask, removeTask, updateTask }) {
+function Tasks({ team, date, taskList, completeTask, removeTask, updateTask }) {
   const [edit, setEdit] = useState({
     id: null,
     value: ''
@@ -21,6 +21,7 @@ function Tasks({ date, taskList, completeTask, removeTask, updateTask }) {
         editId: edit.id,
         value: value,
         date: moment(date).format('YYYY-MM-DD'),
+        team: team
       }
     });
     // console.log('WHAT IS MY EDIT ID', edit.id);
@@ -34,6 +35,7 @@ function Tasks({ date, taskList, completeTask, removeTask, updateTask }) {
 
     dispatch({
       type: 'FETCH_TASKS',
+      payload: moment(date).format('YYYY-MM-DD'),
     });
   }
 
