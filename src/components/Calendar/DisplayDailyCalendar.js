@@ -122,22 +122,17 @@ const DisplayDailyCalendar = props => {
       </TableHead>
       <TableBody>{eachWeek}</TableBody>
     </Table>
-    {/* <TaskList
-    showTaskList = {showTaskList}
-    setShowTaskList = {setShowTaskList} /> */}
     <PopupTasks
-        title="What tasks to do today?"
-        showTaskList={showTaskList}
-        setShowTaskList={setShowTaskList}
-      >
-        {/* <div className='task-app'> */}
-          <TaskList 
-            showTaskList = {showTaskList}
-            setShowTaskList = {setShowTaskList}
-            date = {selectedDate}
-            team = {team}/>
-        {/* </div> */}
-      </PopupTasks>
+      title="What tasks to do today?"
+      showTaskList={showTaskList}
+      setShowTaskList={setShowTaskList}
+    >
+        <TaskList 
+          showTaskList = {showTaskList}
+          setShowTaskList = {setShowTaskList}
+          date = {selectedDate}
+          team = {team}/>
+    </PopupTasks>
   </>
   );
 };

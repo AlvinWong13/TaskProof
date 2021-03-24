@@ -122,17 +122,17 @@ Select
   width: 0;
   height: 0;
   border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
+  border-color: #ffdf6c transparent transparent transparent;
 }
 
 .select-selected.select-arrow-active:after {
-  border-color: transparent transparent #fff transparent;
+  border-color: transparent transparent #ffdf6c transparent;
   top: 7px;
 }
 
 /* style the items (options), including the selected item: */
 .select-items div,.select-selected {
-  color: #ffffff;
+  color: #ffdf6c;
   padding: 8px 16px;
   border: 1px solid transparent;
   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
@@ -186,7 +186,7 @@ Form Treatment
   margin-top: 4%;
   background-color: #ffffff;
   border-radius: 3px;
-  box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
+  box-shadow: 0 1px 2px #000000cc;
 }
 
 input {
@@ -206,19 +206,6 @@ input {
 TaskList Treatment
 -------------------------------------------------------------------------------- */
 
-.task-app {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  width: 520px;
-  min-height: 600px;
-  background: #000000;
-  text-align: center;
-  margin: 128px auto;
-  border-radius: 10px;
-  padding-bottom: 32px;
-}
-
 .complete {
   text-decoration: line-through;
   opacity: 0.4;
@@ -229,14 +216,13 @@ TaskList Treatment
 }
 
 .task-input {
-  margin-left: 30%;
   padding: 14px 32px 14px 16px;
   border-radius: 4px 0 0 4px;
   border: 2px solid #de354c;
   outline: none;
   width: 320px;
   background: transparent;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
 
 .task-input::placeholder {
@@ -245,7 +231,6 @@ TaskList Treatment
 
 .task-button {
   margin-top: 5px;
-  margin-left: 44%;
   padding: 16px;
   border: none;
   border-radius: 0 4px 4px 0;

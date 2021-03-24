@@ -94,6 +94,7 @@ function TaskForm(props) {
           onChange={handleChange}
           ref={inputRef}
         />
+        <button  className="task-button"> Add Task </button>
         <Grid container justify="space-around">
           <TextField
             id="date"
@@ -107,7 +108,6 @@ function TaskForm(props) {
             onChange={handleDateChange}
           />
         </Grid>
-        <button  className="task-button"> Add Task </button>
       </>
       )}
     </form>
