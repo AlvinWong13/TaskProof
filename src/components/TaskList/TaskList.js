@@ -36,17 +36,21 @@ function TaskList({ date, team }) {
       const removeArr = [...tasks].filter(task => task.id !== id)
       dispatch({
         type: 'DELETE_TASK',
-        payload: id
-      });
-
-      setTasks(removeArr)
-      dispatch({
-        type: 'FETCH_TASKS',
         payload: {
+          id: id,
           date: moment(date).format('YYYY-MM-DD'),
           team: team
         }
-      })
+      });
+
+      setTasks(removeArr)
+      // dispatch({
+      //   type: 'FETCH_TASKS',
+      //   payload: {
+      //     date: moment(date).format('YYYY-MM-DD'),
+      //     team: team
+      //   }
+      // })
     };
 
     const updateTask = (taskId, newValue) => {
@@ -55,13 +59,13 @@ function TaskList({ date, team }) {
       }
 
       setTasks(prev => prev.map(item => (item.id === taskId ? newValue : item)));
-      dispatch({
-        type: 'FETCH_TASKS',
-        payload: {
-          date: moment(date).format('YYYY-MM-DD'),
-          team: team
-        }
-      })
+      // dispatch({
+      //   type: 'FETCH_TASKS',
+      //   payload: {
+      //     date: moment(date).format('YYYY-MM-DD'),
+      //     team: team
+      //   }
+      // })
     }
 
     const completeTask = id => {

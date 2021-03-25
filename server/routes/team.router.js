@@ -44,7 +44,11 @@ router.post('/', (req, res) => {
 });
 
 router.get('/team/members', (req, res) => {
-  const teamMember = [req.body.firstname, req.body.lastname];
+  const teamId = req.body;
+  console.log('req.body', req.body);
+  // console.log('first name', req.body.firstname);
+  // console.log('last name', req.body.lastname);
+
 
   const teamQuery = `SELECT "user".firstname, "user".lastname
       FROM "user"
@@ -53,7 +57,7 @@ router.get('/team/members', (req, res) => {
       WHERE "team".id = $1;
   `;
   pool
-    .query(teamQuery, [teamMember])
+    .query(teamQuery, [teamId])
     .then((result) =>{
       res.send(result.rows);
     })

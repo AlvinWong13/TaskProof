@@ -29,10 +29,10 @@ function* postNewTeam(action) {
 
 function* teamMembers(action) {
   try {
-    yield axios.get('/api/team/members', action.payload)
+    const teamMember = yield axios.get('/api/team/members', action.payload)
     yield put({
       type: 'SET_TEAM_MEMBERS',
-      payload: id
+      payload: teamMember
     })
   }
   catch (error) {

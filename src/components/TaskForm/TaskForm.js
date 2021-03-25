@@ -64,13 +64,13 @@ function TaskForm(props) {
     });
     
     setInput('');
-    dispatch({
-      type: 'FETCH_TASKS',
-      payload: {
-        date: moment(props.date).format('YYYY-MM-DD'),
-        team: team
-      }
-    })
+    // dispatch({
+    //   type: 'FETCH_TASKS',
+    //   payload: {
+    //     date: moment(props.date).format('YYYY-MM-DD'),
+    //     team: team
+    //   }
+    // })
   };
 
   return (

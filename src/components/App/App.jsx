@@ -58,7 +58,7 @@ function App() {
             // - else shows LoginPage at /login
             exact
             path="/login"
-            authRedirect="/team"
+            authRedirect="/home"
           >
             <LoginPage />
           </ProtectedRoute>
@@ -69,7 +69,7 @@ function App() {
             // - else shows RegisterPage at "/registration"
             exact
             path="/registration"
-            authRedirect="/team"
+            authRedirect="/home"
           >
             <RegisterPage />
           </ProtectedRoute>

@@ -14,16 +14,16 @@ export const darkTheme = createMuiTheme({
   }
 });
 
-export const lightTheme = createMuiTheme({
-  typography: {
-    useNextVariants: true
-  },
-  palette: {
-    primary: { main: teal["A100"] },
-    secondary: { main: orange["A100"], light: orange[500] },
-    caution: { main: red[500] },
-    type: "light"
-  }
-});
+// export const lightTheme = createMuiTheme({
+//   typography: {
+//     useNextVariants: true
+//   },
+//   palette: {
+//     primary: { main: teal["A100"] },
+//     secondary: { main: orange["A100"], light: orange[500] },
+//     caution: { main: red[500] },
+//     type: "light"
+//   }
+// });
 
 //export default theme;

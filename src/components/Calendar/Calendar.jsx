@@ -9,7 +9,7 @@ import DailyYearlyCalendar from "./DisplayYearlyCalendar";
 
 //Material theme
 import { MuiThemeProvider } from "@material-ui/core";
-import { darkTheme, lightTheme } from "./muitheme";
+import { darkTheme } from "./muitheme";
 
 export default class Calendar extends Component {
   state = {

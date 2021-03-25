@@ -33,13 +33,13 @@ function Tasks({ team, date, taskList, completeTask, removeTask, updateTask }) {
       value: ''
     });
 
-    dispatch({
-      type: 'FETCH_TASKS',
-      payload: {
-        date: moment(date).format('YYYY-MM-DD'),
-        team: team
-      }
-    });
+    // dispatch({
+    //   type: 'FETCH_TASKS',
+    //   payload: {
+    //     date: moment(date).format('YYYY-MM-DD'),
+    //     team: team
+    //   }
+    // });
   }
 
   if (edit.id) {

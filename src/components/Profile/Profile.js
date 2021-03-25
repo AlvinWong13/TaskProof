@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -53,13 +53,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FullWidthTabs() {
+function Profile() {
   const classes = useStyles();
   const theme = useTheme();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
   const dispatch = useDispatch();
 
   const teamSelect = useSelector(store => store.teamSelect);
+  const teamMembers = useSelector(store => store.teamMembers);
+
+  console.log('what are the team members?', teamMembers);
+
+  console.log('what is the value?', value);
 
   useEffect(() => {
     dispatch({
@@ -68,10 +73,16 @@ export default function FullWidthTabs() {
   }, []);
 
   const handleChange = (event, newValue) => {
+    dispatch({
+      type: 'GET_TEAM_MEMBERS',
+      payload: newValue
+    })
     setValue(newValue);
   };
 
   const handleChangeIndex = (index) => {
+    console.log('what is my index', index);
+    
     setValue(index);
   };
 
@@ -79,6 +90,7 @@ export default function FullWidthTabs() {
     <div className={classes.root}>
       <AppBar position="static" color="primary">
         <Tabs
+          value={value}
           onChange={handleChange}
           indicatorColor="primary"
           textColor="secondary"
@@ -100,16 +112,23 @@ export default function FullWidthTabs() {
         index={value}
         onChangeIndex={handleChangeIndex}
       >
-        <TabPanel value={value} index={0} dir={theme.direction}>
+        {/* <TabPanel dir={theme.direction}>
+          {teamMembers.map(member => {
+            return(
+              <TabPanel key={member.id} value={member.id}>{member.name}</TabPanel>
+            )
+          })}
+        </TabPanel> */}
+
+        <TabPanel  dir={theme.direction}>
           Item One
         </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
+        <TabPanel  dir={theme.direction}>
           Item Two
-        </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
         </TabPanel>
       </SwipeableViews>
     </div>
   );
 }
+
+export default Profile;
