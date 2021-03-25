@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import { Grid, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import moment from 'moment';
@@ -13,6 +14,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     width: 200,
+    color: '#ffffff',
+    
   },
 }));
 
@@ -61,13 +64,13 @@ function TaskForm(props) {
     });
     
     setInput('');
-    dispatch({
-      type: 'FETCH_TASKS',
-      payload: {
-        date: moment(props.date).format('YYYY-MM-DD'),
-        team: team
-      }
-    })
+    // dispatch({
+    //   type: 'FETCH_TASKS',
+    //   payload: {
+    //     date: moment(props.date).format('YYYY-MM-DD'),
+    //     team: team
+    //   }
+    // })
   };
 
   return (
@@ -94,6 +97,7 @@ function TaskForm(props) {
           onChange={handleChange}
           ref={inputRef}
         />
+        <button  className="task-button"> Add Task </button>
         <Grid container justify="space-around">
           <TextField
             id="date"
@@ -107,7 +111,6 @@ function TaskForm(props) {
             onChange={handleDateChange}
           />
         </Grid>
-        <button  className="task-button"> Add Task </button>
       </>
       )}
     </form>

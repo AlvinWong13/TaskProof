@@ -15,7 +15,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import Calendar from '../Calendar/Calendar';
+import Profile from '../Profile/Profile'
 import Home from '../Home/Home';
 
 import './App.css';
@@ -46,7 +46,7 @@ function App() {
             exact
             path="/profile"
           >
-            <Calendar />
+            <Profile />
           </ProtectedRoute>
 
           {/* When a value is supplied for the authRedirect prop the user will
@@ -58,7 +58,7 @@ function App() {
             // - else shows LoginPage at /login
             exact
             path="/login"
-            authRedirect="/team"
+            authRedirect="/home"
           >
             <LoginPage />
           </ProtectedRoute>
@@ -69,7 +69,7 @@ function App() {
             // - else shows RegisterPage at "/registration"
             exact
             path="/registration"
-            authRedirect="/team"
+            authRedirect="/home"
           >
             <RegisterPage />
           </ProtectedRoute>

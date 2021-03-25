@@ -43,4 +43,28 @@ router.post('/', (req, res) => {
     });
 });
 
+router.get('/members/:id', (req, res) => {
+  const teamId = req.params.id;
+  console.log('req.body', req.body);
+  // console.log('first name', req.body.firstname);
+  // console.log('last name', req.body.lastname);
+
+
+  const teamQuery = `SELECT "user".firstname, "user".lastname
+      FROM "user"
+      JOIN "connection" ON "user".id = "connection".user_id
+      JOIN "team" ON "team".id = "connection".team_id
+      WHERE "team".id = $1;
+  `;
+  pool
+    .query(teamQuery, [teamId])
+    .then((result) =>{
+      res.send(result.rows);
+    })
+    .catch(error => {
+      console.log('Error getting team members', error);
+      res.sendStatus(500)
+    })
+})
+
 module.exports = router;

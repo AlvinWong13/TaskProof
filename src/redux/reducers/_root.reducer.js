@@ -5,6 +5,7 @@ import taskList from './task.reducer';
 import editTask from './edit.task.reducer';
 import team from './team.reducer';
 import teamSelect from './team.select.reducer';
+import teamMembers from './team.member.reducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   editTask,
   team,
   teamSelect,
+  teamMembers,
 });
 
 export default rootReducer;

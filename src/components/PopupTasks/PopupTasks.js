@@ -5,9 +5,18 @@ import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles(theme => ({
     dialogWrapper : {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'start',
+      width: 520,
+      minHeight: 600,
+      backgroundColor: "#000000cc",
+      textAlign: 'center',
+      borderRadius: 10,
       padding: theme.spacing(2),
       position:'absolute',
-      top: theme.spacing(5)
+      top: theme.spacing(10),
+      
     },
     dialogTitle: {
       paddingRight: '0px'
