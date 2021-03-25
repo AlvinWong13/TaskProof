@@ -60,8 +60,6 @@ function Tasks({ team, date, taskList, completeTask, removeTask, updateTask }) {
           }
           className='edit-icon'/>
       </div>
-
-
     </div>
   ))
 }

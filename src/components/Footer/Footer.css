@@ -1,6 +1,10 @@
 footer {
   color: white;
-  margin-top: 80px;
-  padding: 20px;
-  text-align: center;
+  height: 75px;
+  margin-top: -50px;
+  position: fixed;
+  bottom:0;
+  width: 100%;
+  z-index: 1;
+  text-align:center;
 }

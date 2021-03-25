@@ -36,20 +36,12 @@ TabPanel.propTypes = {
 };
 
 const useStyles = makeStyles((theme) => ({
-  palette: {
-    primary: {
-      main: "#ffdf6c",
-    },
-    secondary: {
-      main: "#202020",
-    },
-  },
   root: {
     flexGrow: 1,
     backgroundColor: "#00000099",
     color: "#ffdf6c",
-    marginLeft: 400,
-    marginRight: 400,
+    marginLeft: 300,
+    marginRight: 300,
   },
 }));
 
@@ -80,9 +72,7 @@ function Profile() {
     setValue(newValue);
   };
 
-  const handleChangeIndex = (index) => {
-    console.log('what is my index', index);
-    
+  const handleChangeIndex = (index) => {   
     setValue(index);
   };
 
@@ -112,20 +102,27 @@ function Profile() {
         index={value}
         onChangeIndex={handleChangeIndex}
       >
-        {/* <TabPanel dir={theme.direction}>
+        <TabPanel dir={theme.direction} >
           {teamMembers.map(member => {
             return(
-              <TabPanel key={member.id} value={member.id}>{member.name}</TabPanel>
+              <div
+                key={member.id} 
+                value={member.id}>
+                  {member.firstname} {member.lastname}
+              </div>
             )
           })}
-        </TabPanel> */}
+          </TabPanel>
 
-        <TabPanel  dir={theme.direction}>
+        {/* <TabPanel  dir={theme.direction}>
           Item One
         </TabPanel>
         <TabPanel  dir={theme.direction}>
           Item Two
         </TabPanel>
+        <TabPanel  dir={theme.direction}>
+          Item Three
+        </TabPanel> */}
       </SwipeableViews>
     </div>
   );

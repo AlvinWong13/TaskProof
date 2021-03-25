@@ -43,8 +43,8 @@ router.post('/', (req, res) => {
     });
 });
 
-router.get('/team/members', (req, res) => {
-  const teamId = req.body;
+router.get('/members/:id', (req, res) => {
+  const teamId = req.params.id;
   console.log('req.body', req.body);
   // console.log('first name', req.body.firstname);
   // console.log('last name', req.body.lastname);
