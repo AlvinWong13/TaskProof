@@ -8,8 +8,8 @@ function Nav() {
   const user = useSelector((store) => store.user);
 
   let loginLinkData = {
-    path: '/login',
-    text: 'Login / Register',
+    path: '',
+    text: '',
   };
 
   if (user.id != null) {
@@ -24,7 +24,9 @@ function Nav() {
       </Link>
       <h2 className="users-name">{user.firstname} {user.lastname}</h2>
         <div>
-
+          <Link className="navLink" to={loginLinkData.path}>
+            {loginLinkData.text}
+          </Link>
       
           {user.id && (
             <LogOutButton className="navLink" />
