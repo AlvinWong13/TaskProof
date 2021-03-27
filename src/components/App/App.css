@@ -16,10 +16,12 @@ body {
 
 .welcome {
   color: white;
-  text-align: center;
+  text-align: left;
   margin-top: 100px;
-  width: 35%;
-  margin-left: 32%;
+}
+
+.grid-col_8 {
+  color: white;
 }
 
 /*---------------------------------------------------------------------------------
@@ -37,7 +39,7 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #ffffff;
+  border-color: #FFDF6C;
   border-width: 1px 1px 3px;
   border-radius: 4px;
   background-color: #202020;

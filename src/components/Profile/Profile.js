@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -50,6 +51,7 @@ function Profile() {
   const theme = useTheme();
   const [value, setValue] = useState(0);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const teamSelect = useSelector(store => store.teamSelect);
   const teamMembers = useSelector(store => store.teamMembers);
@@ -70,6 +72,7 @@ function Profile() {
       payload: newValue
     })
     setValue(newValue);
+    history.push('/profile')
   };
 
   const handleChangeIndex = (index) => {   

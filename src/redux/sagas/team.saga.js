@@ -3,8 +3,7 @@ import { put, takeEvery } from 'redux-saga/effects';
 
 function* selectTeam(action) {
   try {
-    // console.log('SELECT TEAM');
-    const response = yield axios.get(`/api/team/all`)
+    const response = yield axios.get(`/api/team/myTeams`)
     yield put({
       type: 'SET_TEAM_SELECT',
       payload: response.data
@@ -19,7 +18,7 @@ function* postNewTeam(action) {
   try {
     yield axios.post('/api/team', action.payload);
     yield put({
-      type: 'SET_TEAM'
+      type: 'ADD_TEAM_MEMBER'
     })
   }
   catch (error) {
@@ -27,8 +26,19 @@ function* postNewTeam(action) {
   }
 }
 
+function* addTeamMember(action) {
+  try {
+    yield axios.post('/api/team/add', action.payload);
+    yield put({
+      type: 'SET_TEAMS'
+    })
+  }
+  catch (error) {
+    console.log('Error adding team member to team', error)
+  }
+}
+
 function* teamMembers(action) {
-  console.log('what is my action in team members', action.payload);
   try {
     const teamMember = yield axios.get(`/api/team/members/${action.payload}`)
     yield put({
@@ -45,6 +55,7 @@ function* teamSaga() {
   yield takeEvery('GET_TEAM_SELECT', selectTeam);
   yield takeEvery('CREATE_TEAM', postNewTeam);
   yield takeEvery('GET_TEAM_MEMBERS', teamMembers);
+  yield takeEvery('ADD_TEAM_MEMBER', addTeamMember)
 }
 
 export default teamSaga;

@@ -8,8 +8,8 @@ function Nav() {
   const user = useSelector((store) => store.user);
 
   let loginLinkData = {
-    path: '/login',
-    text: 'Login / Register',
+    path: '',
+    text: '',
   };
 
   if (user.id != null) {
@@ -19,7 +19,7 @@ function Nav() {
 
   return (
     <div className="nav">
-      <Link to="/home">
+      <Link to="/landing">
         <h1 className="nav-title">TaskProof</h1>
       </Link>
       <h2 className="users-name">{user.firstname} {user.lastname}</h2>

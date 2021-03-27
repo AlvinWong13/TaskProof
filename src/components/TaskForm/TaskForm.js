@@ -21,12 +21,12 @@ const useStyles = makeStyles((theme) => ({
 
 function TaskForm(props) {
   const dispatch = useDispatch();
+  const user = useSelector(store => store.user)
+  const teamMembers = useSelector(store => store.teamMembers);
 
   const classes = useStyles();
 
   const [input, setInput] = useState(props.edit ? props.edit.value : '');
-
-  const user = useSelector(store => store.user)
 
   const team = props.team
 
@@ -111,6 +111,22 @@ function TaskForm(props) {
             onChange={handleDateChange}
           />
         </Grid>
+        {/* <select
+          name="text"
+          id="pick team member"
+          value ={teamMember}
+          onChange={(event) => selectTeamMember(event.target.value)}>
+            <option value="" disabled>Team Member:</option>
+              {teamMembers.map(member => {
+                return(
+                  <option
+                    key={member.id} 
+                    value={member.id}>
+                    {member.firstname} {member.lastname}
+                </option>
+                )
+              })}
+        </select> */}
       </>
       )}
     </form>
