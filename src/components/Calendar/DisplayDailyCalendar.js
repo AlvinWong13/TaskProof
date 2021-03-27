@@ -14,6 +14,15 @@ import dateFns from "date-fns";
 import TaskList from "../TaskList/TaskList";
 import PopupTasks from '../PopupTasks/PopupTasks';
 
+// const StyledBadge = withStyles((theme) => ({
+//   badge: {
+//     right: -3,
+//     top: 13,
+//     border: `2px solid ${theme.palette.background.paper}`,
+//     padding: '0 4px',
+//   },
+// }))(Badge);
+
 const DisplayDailyCalendar = props => {
   const today = new Date();
   const { selectedDate } = props;

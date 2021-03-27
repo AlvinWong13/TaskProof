@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 const router = express.Router();
 
-router.get('/all', (req, res) => {
+router.get('/myTeams', (req, res) => {
   if(!req.isAuthenticated()) {
     res.sendStatus(403)
     return;
@@ -29,6 +29,20 @@ router.get('/all', (req, res) => {
     })
 })
 
+router.get('/allTeams', (req, res) => {
+  const teamQuery = `SELECT * FROM "team";`;
+
+  pool
+    .query(teamQuery)
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch(error => {
+      console.log('Error getting all teams', error);
+      res.sendStatus(500)
+    })
+})
+
 router.post('/', (req, res) => {
   const teamName = req.body.name;
 
@@ -38,9 +52,23 @@ router.post('/', (req, res) => {
     .query(teamQuery, [teamName])
     .then(() => res.sendStatus(201))
     .catch((err) => {
-      console.log('Team registration failed: ', err);
+      console.log('Team registration failed ', err);
       res.sendStatus(500);
     });
+});
+
+router.post('/', (req, res) => {
+  const addTeamMember = [req.user.id, req.body.id];
+
+  const teamQuery = `INSERT INTO "connection" ("user_id", "team_id")
+      VALUES ($1, $2)`;
+  pool
+    .query(teamQuery, addTeamMember)
+    .then(() => res.sendStatus(201))
+    .catch((err) => {
+      console.log('Add team member failed', err);
+      res.sendStatus(500);
+    })
 });
 
 router.get('/members/:id', (req, res) => {
@@ -48,7 +76,6 @@ router.get('/members/:id', (req, res) => {
   console.log('req.body', req.body);
   // console.log('first name', req.body.firstname);
   // console.log('last name', req.body.lastname);
-
 
   const teamQuery = `SELECT "user".firstname, "user".lastname
       FROM "user"
