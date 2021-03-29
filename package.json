@@ -12,6 +12,7 @@
     "bcryptjs": "^2.4.3",
     "cookie-session": "^2.0.0-rc.1",
     "date-fns": "^1.30.1",
+    "debug": "^3.2.6",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "moment": "^2.29.1",
@@ -37,7 +38,7 @@
     "start": "node server/server.js",
     "client": "react-scripts start",
     "server": "nodemon --watch server server/server.js",
-    "build": "react-scripts build",
+    "build": "ng build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
