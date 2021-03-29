@@ -13,9 +13,10 @@ function Team() {
     dispatch({
       type: 'CREATE_TEAM',
       payload: {
-        teamName: teamName,
+        teamName,
       },
     });
+    console.log('what is my team name?', teamName);
     history.push('/home');
   };
 

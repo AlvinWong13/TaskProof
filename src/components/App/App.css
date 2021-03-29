@@ -10,7 +10,7 @@ body {
   background: linear-gradient(
     215deg,
     #202020 0%,
-    #3F3F3F 100%
+    #3f3f3f 100%
   );
 }
 
@@ -104,8 +104,25 @@ Button
 }
 
 /* --------------------------------------------------------------------------------
+Team
+-------------------------------------------------------------------------------- */
+
+.teamForm {
+  box-sizing: border-box;
+  width: 400px;
+  max-width: 100%;
+  padding: 25px;
+  margin: 0 auto 20px;
+  margin-top: 10%;
+  background-color: #ffffff;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px #000000cc;
+}
+
+/* --------------------------------------------------------------------------------
 Select
 -------------------------------------------------------------------------------- */
+
 .custom-select {
   position: absolute;
   right: 5px;
@@ -321,4 +338,8 @@ TaskList Treatment
 
 .edit-icon {
   color: rgb(255, 255, 255);
+}
+
+.button {
+  color: rgb(0, 0, 0)
 }

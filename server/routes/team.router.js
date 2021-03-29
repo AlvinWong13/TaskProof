@@ -35,6 +35,7 @@ router.get('/allTeams', (req, res) => {
   pool
     .query(teamQuery)
     .then((result) => {
+      console.log('what are all my teams', result);
       res.send(result.rows);
     })
     .catch(error => {
@@ -44,10 +45,12 @@ router.get('/allTeams', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const teamName = req.body.name;
+  const teamName = req.body;
+  console.log('req.body', req.body);
 
   const teamQuery = `INSERT INTO "team" ("name")
     VALUES ($1)`;
+
   pool
     .query(teamQuery, [teamName])
     .then(() => res.sendStatus(201))
@@ -73,9 +76,6 @@ router.post('/', (req, res) => {
 
 router.get('/members/:id', (req, res) => {
   const teamId = req.params.id;
-  console.log('req.body', req.body);
-  // console.log('first name', req.body.firstname);
-  // console.log('last name', req.body.lastname);
 
   const teamQuery = `SELECT "user".firstname, "user".lastname
       FROM "user"

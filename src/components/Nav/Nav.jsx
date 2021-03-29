@@ -20,7 +20,7 @@ function Nav() {
   return (
     <div className="nav">
       <Link to="/landing">
-        <h1 className="nav-title">TaskProof</h1>
+        <img src="taskproof.png" alt="TaskProof Logo" className="nav-title" />
       </Link>
       <h2 className="users-name">{user.firstname} {user.lastname}</h2>
         <div>

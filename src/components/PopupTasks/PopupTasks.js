@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useRef, useEffect, useCallback} from 'react';
+import { useSpring, animated } from 'react-spring';
 import { Dialog, DialogTitle, DialogContent, makeStyles, Typography } from '@material-ui/core';
 import Controls from '../Controls/Controls';
 import CloseIcon from '@material-ui/icons/Close';
@@ -29,9 +30,27 @@ function PopupTasks(props) {
   // use styling for theme
   const classes = useStyles();
 
+  const popupRef = useRef();
+  const animation = useSpring({
+    config:{
+      duration: 250
+    },
+    opacity: showTaskList ? 1 : 0,
+    transform: showTaskList ? `translateY(0%)` : `translateY(-100%)`
+  });
+
+  const closePopup = e => {
+    if(popupRef.current === e.target) {
+      setShowTaskList(false);
+    }
+  }
+
   return (
-    <Dialog open={showTaskList} fullWidth maxWidth="md" classes={{ paper :classes.dialogWrapper }}>
-        <DialogTitle>
+    <>
+    <div ref={popupRef} onClick={closePopup}>
+      <animated.div style={animation}>
+        <Dialog open={showTaskList} fullWidth maxWidth="md" classes={{ paper :classes.dialogWrapper }} >
+          <DialogTitle>
             <div style={{display: 'flex'}}>
               <Typography variant="h5" component="div" style={{flexGrow:1}}>
                 {title}
@@ -43,11 +62,14 @@ function PopupTasks(props) {
                 <CloseIcon />
               </Controls.ActionButton>
             </div>
-        </DialogTitle>
+          </DialogTitle>
         <DialogContent dividers>
             {children}
         </DialogContent>
-    </Dialog>
+        </Dialog>
+      </animated.div>
+    </div>
+    </>
   )
 }
 

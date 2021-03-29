@@ -19,9 +19,6 @@ function TaskList({ date, team }) {
       });
     }, [])
 
-
-    // console.log('what is the date?', date);
-
     const addTask = task => {
       if(!task.text || /^\s*$/.test(task.text)){
         return;
@@ -44,13 +41,6 @@ function TaskList({ date, team }) {
       });
 
       setTasks(removeArr)
-      // dispatch({
-      //   type: 'FETCH_TASKS',
-      //   payload: {
-      //     date: moment(date).format('YYYY-MM-DD'),
-      //     team: team
-      //   }
-      // })
     };
 
     const updateTask = (taskId, newValue) => {
@@ -59,13 +49,6 @@ function TaskList({ date, team }) {
       }
 
       setTasks(prev => prev.map(item => (item.id === taskId ? newValue : item)));
-      // dispatch({
-      //   type: 'FETCH_TASKS',
-      //   payload: {
-      //     date: moment(date).format('YYYY-MM-DD'),
-      //     team: team
-      //   }
-      // })
     }
 
     const completeTask = id => {
@@ -81,9 +64,6 @@ function TaskList({ date, team }) {
       })
       setTasks(updatedTasks);
     }
-
-    // console.log('taskList HERE!', taskList);
-    // console.log('what is my team in taskList', team);
 
   return (
       <div className="taskList">

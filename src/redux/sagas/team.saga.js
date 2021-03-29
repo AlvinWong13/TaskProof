@@ -15,6 +15,7 @@ function* selectTeam(action) {
 }
 
 function* postNewTeam(action) {
+  console.log('postNewTeam', action.payload);
   try {
     yield axios.post('/api/team', action.payload);
     yield put({
@@ -27,6 +28,7 @@ function* postNewTeam(action) {
 }
 
 function* addTeamMember(action) {
+  console.log('what is my action?', action.payload);
   try {
     yield axios.post('/api/team/add', action.payload);
     yield put({

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import Calendar from '../Calendar/Calendar';
 
 function Home() {
@@ -13,16 +12,6 @@ function Home() {
       type: 'GET_TEAM_SELECT',
     });
   }, []);
-
-  // const selectTeam = () => {
-  //   dispatch({
-  //     type: 'SELECT_TEAM',
-  //     payload: teamId
-  //   })
-  // };
-
-  // console.log('what is my team?', teamId);
-  // console.log ('what is my teamSelect?', teamSelect);
 
   return (
     <>

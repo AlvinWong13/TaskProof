@@ -56,10 +56,6 @@ function Profile() {
   const teamSelect = useSelector(store => store.teamSelect);
   const teamMembers = useSelector(store => store.teamMembers);
 
-  console.log('what are the team members?', teamMembers);
-
-  console.log('what is the value?', value);
-
   useEffect(() => {
     dispatch({
       type: 'GET_TEAM_SELECT',
@@ -116,16 +112,6 @@ function Profile() {
             )
           })}
           </TabPanel>
-
-        {/* <TabPanel  dir={theme.direction}>
-          Item One
-        </TabPanel>
-        <TabPanel  dir={theme.direction}>
-          Item Two
-        </TabPanel>
-        <TabPanel  dir={theme.direction}>
-          Item Three
-        </TabPanel> */}
       </SwipeableViews>
     </div>
   );

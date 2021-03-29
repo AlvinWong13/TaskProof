@@ -11,10 +11,10 @@ router.get('/:date/:team', (req, res) => {
     res.sendStatus(403)
     return;
   }
+  
   const date = req.params.date;
-  // console.log('date?', date);
   const team = req.params.team;
-  // console.log('team params', req.params.team);
+ 
 
   const taskQuery = `SELECT * FROM "tasks" 
       WHERE user_id = $1 AND date = $2 AND team_id = $3
@@ -37,13 +37,10 @@ router.get('/:date/:team', (req, res) => {
  * POST route 
  */
 router.post('/', rejectUnauthenticated, (req, res) => {
-  // console.log(req.body.task);
-  // console.log(req.user.id);
-  // console.log('what is my req.body?',req.body)
-  // console.log(req.body.team.id);
 
   const taskQuery = `INSERT INTO "tasks" ("task", "date", "user_id", "team_id")
     VALUES ($1, $2, $3, $4);`;
+
   pool
     .query(taskQuery, [req.body.task, req.body.date, req.user.id, req.body.team])
     .then(() => res.sendStatus(200))
@@ -57,10 +54,9 @@ router.post('/', rejectUnauthenticated, (req, res) => {
  * PUT route 
  */
 router.put('/:id', rejectUnauthenticated, (req, res) => {
+
   let taskQuery;
   let editParams; 
-  // console.log('REQ.BODY.TASK', req.body.value.text);
-  // console.log('req.body.id', req.body.editId);
 
   if (req.connection.authlevel === 'ADMIN') {
     taskQuery = `UPDATE "tasks" SET "task" = $1 WHERE "id" = $2;`;
