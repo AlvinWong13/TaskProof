@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Paper, Button, Typography, IconButton } from "@material-ui/core";
 import dateFns from "date-fns";
-import ChevronLeftRounded from "@material-ui/icons/ChevronLeftRounded";
-import ChevronRightRounded from "@material-ui/icons/ChevronRightRounded";
+import { ChevronLeftRounded, ChevronRightRounded} from "@material-ui/icons/";
 import DisplayMonthlyCalendar from "./DisplayMonthlyCalendar";
 import DisplayDailyCalendar from "./DisplayDailyCalendar";
 import DailyYearlyCalendar from "./DisplayYearlyCalendar";
