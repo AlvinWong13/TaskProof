@@ -27,7 +27,7 @@ function Team() {
           Team Name:
           <input
             type="text"
-            name="Team Name"
+            name="Team Names"
             value={teamName}
             required
             onChange={(event) => setTeamName(event.target.value)}
