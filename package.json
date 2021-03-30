@@ -39,7 +39,6 @@
     "client": "react-scripts start",
     "server": "nodemon --watch server server/server.js",
     "build": "ng build",
-    "heroku-postbuild": "ng build --prod",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
