@@ -1,9 +1,6 @@
 {
   "name": "prime-solo-project",
   "version": "0.1.0",
-  "engines": {
-    "node: "14.16"
-  }
   "private": true,
   "proxy": "http://localhost:5000",
   "dependencies": {
@@ -41,8 +38,7 @@
     "start": "node index.js",
     "client": "react-scripts start",
     "server": "nodemon --watch server server/server.js",
-    "build": "ng build",
-    "heroku-postbuild": "ng build --prod",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
